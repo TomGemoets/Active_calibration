@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="English" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Module.fourphase package &#8212; Active_calibration 2024-03-20 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=27c119b7"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Module.read package" href="Module.read.html" />
+    <link rel="prev" title="Module.export package" href="Module.export.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-fourphase-package">
+<h1>Module.fourphase package<a class="headerlink" href="#module-fourphase-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-Module.fourphase.four_phase">
+<span id="module-fourphase-four-phase-module"></span><h2>Module.fourphase.four_phase module<a class="headerlink" href="#module-Module.fourphase.four_phase" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="Module.fourphase.four_phase.FourPhase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Module.fourphase.four_phase.</span></span><span class="sig-name descname"><span class="pre">FourPhase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_image</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Module.fourphase.four_phase.FourPhase" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Module.fourphase.four_phase.FourPhase.calculate_four_phase_shifting">
+<span class="sig-name descname"><span class="pre">calculate_four_phase_shifting</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Module.fourphase.four_phase.FourPhase.calculate_four_phase_shifting" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the phase map from a list of four-phase shifted images</p>
+<p>Keyword argument:
+list_images -- list of the four-shifted image path</p>
+<p>Returns an array of pixel values from the four-phase shifting equation.
+Creates an image of the phase map and saves it in the folder 'Four_phase_images'.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Module.fourphase.four_phase.FourPhase.get_image_array">
+<span class="sig-name descname"><span class="pre">get_image_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Module.fourphase.four_phase.FourPhase.get_image_array" title="Link to this definition">¶</a></dt>
+<dd><p>Read an image with OpenCV.</p>
+<p>Keyword argument:
+image -- image path</p>
+<p>Returns an array of all pixel values in greyscale of the image.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Module.fourphase.four_phase.FourPhase.get_position_and_camera_number">
+<span class="sig-name descname"><span class="pre">get_position_and_camera_number</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Module.fourphase.four_phase.FourPhase.get_position_and_camera_number" title="Link to this definition">¶</a></dt>
+<dd><p>Get the position and the camera number from the name of an image.</p>
+<p>Keyword argument:
+list_images -- list of the image paths</p>
+<p>Returns the position number and the camera number.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-Module.fourphase">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-Module.fourphase" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Active_calibration</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Active_calibration</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="Module.html">Module package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Active_calibration</a><ul>
+  <li><a href="Module.html">Module package</a><ul>
+      <li>Previous: <a href="Module.export.html" title="previous chapter">Module.export package</a></li>
+      <li>Next: <a href="Module.read.html" title="next chapter">Module.read package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Stephane Hu.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/Module.fourphase.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

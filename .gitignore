@@ -16,7 +16,7 @@ calibration_parameters.xml
 
 # Distribution / packaging
 .Python
-build/
+.idea
 develop-eggs/
 dist/
 downloads/
