@@ -1,0 +1,25 @@
+grid_parameters:
+  grid_length: 6 # number of fringes
+  grid_width: 3 # number of fringes
+
+screen_resolution:
+  resolution_length: 2388 # number of pixels
+  resolution_width: 1668  # number of pixels
+
+fringe_intensities: # pixels intensities set by default
+  mean_pixel_value: 160 # mean intensity of a circular fringe
+  sinusoidal_amplitude: 80 # amplitude of the sinusoidal pattern
+
+phase_properties:
+  phase_shift: 90 #deg
+  number: 4       # four shift in total
+
+plate_properties:
+  grid_spacing: 80 #mm
+
+image_properties:
+  name_image_left: _0 # suffix for images from the left camera
+  name_image_right: _1 # suffix for images from the right camera
+  path_target_image: Calibration_images # file where images of the active targets are saved
+  path_calibration_image: Four_phase_images # file where images of the phase maps are saved
+  extension: .tif
