@@ -28,6 +28,10 @@ source .venv/bin/activate
 pip install -r requirement.txt 
 ```
 
+Then to execute the package:
+```
+python main.py
+```
 ## Usage
 
 # Input description
