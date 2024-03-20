@@ -3,6 +3,14 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Results folder and files
+Four_phase_images/
+Target_images/
+calibration_parameters.xml
+
+# Apple stuffs
+.DS_Store
+
 # C extensions
 *.so
 
