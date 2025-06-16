@@ -16,7 +16,7 @@ class FourPhase():
 
         Returns the position number and the camera number.
         """
-        folder, filename_extansion = self.list_image[0].split('/',1)
+        folder, filename_extansion = self.list_image[0].split('\\',1)
         filename, extansion = filename_extansion.split('.',1)
         position_number , phase_value, camera_number = filename.split('_',3)
         return position_number, camera_number
