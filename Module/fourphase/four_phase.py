@@ -16,7 +16,7 @@ class FourPhase():
 
         Returns the position number and the camera number.
         """
-        folder, filename_extansion = self.list_image[0].split('/',1)
+        folder, filename_extansion = self.list_image[0].split('\\',1)
         filename, extansion = filename_extansion.split('.',1)
         position_number , phase_value, camera_number = filename.split('_',3)
         return position_number, camera_number
@@ -42,7 +42,7 @@ class FourPhase():
         list_images -- list of the four-shifted image path
 
         Returns an array of pixel values from the four-phase shifting equation.
-        Creates an image of the phase map and saves it in the folder 'Four_phase_images'.
+        Creates an image of the phase map and saves it in the folder 'For_Active_Calibration_images'.
         """
         # Determine the dimensions of the images
         number_pixel_x, number_pixel_y = self.get_image_array(self.list_image[0]).shape
@@ -91,9 +91,9 @@ class FourPhase():
         # Save picture
         #cv2.imshow('Four phase yield', four_phase_image)
         #cv2.waitKey(500)
-        if os.path.exists('./Four_phase_images'):
-            cv2.imwrite('./Four_phase_images/' + self.position_number + '_' + self.camera_number + '.tif', four_phase_image)
+        if os.path.exists('./For_Active_Calibration_images'):
+            cv2.imwrite('./For_Active_Calibration_images/' + self.position_number + '_' + self.camera_number + '.tif', four_phase_image)
         else:
-            os.mkdir('./Four_phase_images')
-            cv2.imwrite('./Four_phase_images/' + self.position_number + '_' + self.camera_number + '.tif', four_phase_image)
+            os.mkdir('./For_Active_Calibration_images')
+            cv2.imwrite('./For_Active_Calibration_images/' + self.position_number + '_' + self.camera_number + '.tif', four_phase_image)
         #cv2.destroyAllWindows()
