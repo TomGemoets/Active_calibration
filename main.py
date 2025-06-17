@@ -33,7 +33,7 @@ def choix_calibration():
     while True:
         passive_ou_active = input("Souhaitez-vous réaliser de la calibration passive ou active ?(p/a) : ")
         if passive_ou_active in choix_valide:
-            return choix_valide
+            return passive_ou_active
         else :
             print("Vous avez encoder une mauvaise valeur, veuillez réessayer.")
 def dimensions_chessboard():
@@ -49,12 +49,13 @@ def dimensions_chessboard():
 
 if __name__ == '__main__':
     #Demande à l'utilisateur s'il veut faire de la calibration Passive ou Active
-    #methode_de_calibration = choix_calibration()
-    methode_de_calibration = 'p'
+    methode_de_calibration = choix_calibration()
+    #methode_de_calibration = 'a'
 
     # -----------------Calibration active uniquement----------------------------------
     # Create circular grid target
     if methode_de_calibration == 'a' or methode_de_calibration == 'active':
+        print("Début de la calibration active")
         print("methode active")
         # Load yamlfile
         deck = Deck('./deck.yaml',methode_de_calibration)
@@ -113,6 +114,7 @@ if __name__ == '__main__':
 
     # ------------------Calibration passive uniquement----------------------------------
     else: #faire la calib passive
+        print("Début de la calibration passive")
         # Load yamlfile
         deck = Deck('./deck_passive.yaml',methode_de_calibration)
         print(deck)
