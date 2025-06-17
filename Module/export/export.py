@@ -1,4 +1,7 @@
 import xml.etree.ElementTree as ET
+import numpy as np
+from  math import *
+
 
 class ExportToXML():
     def __init__(self, camera_matrix_left, distortion_coefficient_left, camera_matrix_right, distortion_coefficient_right, euler_angles, translation_vector):
@@ -49,6 +52,8 @@ class ExportToXML():
         translation_y = self.translation_vector[1][0]
         translation_z = self.translation_vector[2][0]
 
+        magnitude = sqrt(translation_x ** 2 + translation_y ** 2 + translation_z ** 2)
+
         # Create the root element
         root = ET.Element("calibration")
         root.set("lri", "calibration")
@@ -75,6 +80,9 @@ class ExportToXML():
         translation = ET.SubElement(orientation, "translation")
         translation.text = f'{translation_x} {translation_y} {translation_z}'
         translation.tail = "\n"
+        magnitude = ET.SubElement(orientation, "magnitude")
+        magnitude.text = f'{magnitude}'
+        magnitude.tail = "\n"
         orientation.tail = "\n"
 
 
@@ -84,7 +92,8 @@ class ExportToXML():
         # Write the XML tree to a file
         tree.write("calibration_parameters.xml", encoding="ISO-8859-1", xml_declaration=True)
 
-    def write_XML_VIC(self):
+
+    def write_XML_VIC(self, repere_general):
         """Export the calibration data in a XML file.
 
         Keyword arguments:
@@ -102,6 +111,7 @@ class ExportToXML():
         center_y_left = self.camera_matrix_left[1][2]
         focal_length_x_left = self.camera_matrix_left[0][0]
         focal_length_y_left = self.camera_matrix_left[1][1]
+        skew_left = self.camera_matrix_left[0][1]
         kappa_1_left = self.distortion_coefficient_left[0][0]
         kappa_2_left = self.distortion_coefficient_left[0][1]
         kappa_3_left = self.distortion_coefficient_left[0][4]
@@ -110,10 +120,10 @@ class ExportToXML():
         center_y_right = self.camera_matrix_right[1][2]
         focal_length_x_right = self.camera_matrix_right[0][0]
         focal_length_y_right = self.camera_matrix_right[1][1]
+        skew_right = self.camera_matrix_right[0][1]
         kappa_1_right = self.distortion_coefficient_right[0][0]
         kappa_2_right = self.distortion_coefficient_right[0][1]
         kappa_3_right = self.distortion_coefficient_right[0][4]
-
 
         alpha = self.euler_angles[0]
         beta = self.euler_angles[1]
@@ -122,6 +132,34 @@ class ExportToXML():
         translation_x = self.translation_vector[0][0]
         translation_y = self.translation_vector[1][0]
         translation_z = self.translation_vector[2][0]
+
+        # Transfer parameters into VIC format
+
+        alpha0 = repere_general[0][0]
+        beta0 = repere_general[0][1]
+        gamma0 = repere_general[0][2]
+        x0 = repere_general[1][0]
+        y0 = repere_general[1][1]
+        z0 = repere_general[1][2]
+
+        alpha_left = alpha0
+        beta_left = beta0
+        gamma_left = gamma0
+
+        alpha_right = alpha0 - alpha
+        beta_right = beta0 - beta
+        gamma_right = gamma0 - gamma
+
+        translation_x_left = translation_x
+        translation_y_left = translation_y
+        translation_z_left = translation_z
+
+        translation_x_right = translation_x - x0
+        translation_y_right = translation_y - y0
+        translation_z_right = translation_z - z0
+
+        print("test")
+
 
         # Create the root element
         root = ET.Element("project")
@@ -152,8 +190,27 @@ class ExportToXML():
         orientation_right.tail = "\n"
         camera_right.tail = "\n"
 
+
         # Create the XML tree
         tree = ET.ElementTree(root)
 
         # Write the XML tree to a file
         tree.write("project.xml", encoding="ISO-8859-1", xml_declaration=True)
+
+
+    def rotationMatrixEuler(self, alpha, beta, gamma):
+        alpha = radians(alpha)
+        beta = radians(beta)
+        gamma = radians(gamma)
+        R = np.array([[cos(beta) * cos(gamma), sin(alpha) * sin(beta) * cos(gamma) - cos(alpha) * sin(gamma),
+                       cos(alpha) * sin(beta) * cos(gamma) + sin(alpha) * sin(gamma)],
+                      [cos(beta) * sin(gamma), sin(alpha) * sin(beta) * sin(gamma) + cos(alpha) * cos(gamma),
+                       cos(alpha) * sin(beta) * sin(gamma) - sin(alpha) * cos(gamma)],
+                      [-sin(beta), sin(alpha) * cos(beta), cos(alpha) * cos(beta)]])
+        return R
+
+test = [[[4.69177326e+03, 0.00000000e+00, 1.14997865e+03], [0.00000000e+00, 4.69195035e+03, 1.08197998e+03], [0.00000000e+00, 0.00000000e+00, 1.00000000e+00]], [[-6.87284926e-02, -1.53296516e+00,  1.01792327e-03, -3.56298259e-03,  -5.93088358e+01]], [[4.68490841e+03, 0.00000000e+00, 1.13693331e+03], [0.00000000e+00, 4.68644278e+03, 1.05681962e+03], [0.00000000e+00, 0.00000000e+00, 1.00000000e+00]], [[-7.92820681e-02, -5.63249090e+00, -1.31658829e-04, -4.42416335e-03,   2.05720954e+02]], [[ 0.99542649, -0.05189491,  0.08020617], [ 0.05134249,  0.99864113,  0.00893598], [-0.08056091, -0.00477713,  0.99673824]], [[-208.44747426], [   3.10579127], [ -15.67951203]], [ 2.98431905,  4.60041637, -0.5136559 ]]
+
+ExportToXML(test[0], test[1], test[2], test[3],test[6], test[5]).write_XML_VIC([[0,0,0],[0,0,0]])
+
+
