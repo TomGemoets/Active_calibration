@@ -4,23 +4,6 @@ from PIL import Image
 import pillow_heif
 import cv2 as cv
 
-# Load yamlfile
-#deck = Deck('./deck.yaml')
-#print(deck)
-#deck_passive_gauche = Deck('./Passive_deck_gauche.yaml')
-
-
-"""# Get values from the yaml
-length_single_fringe = np.minimum(deck.resolution_length / deck.grid_length, deck.resolution_width / deck.grid_width)
-mean_pixel_value = deck.mean_pixel_value
-amplitude = deck.sinusoidal_amplitude
-phase_shift = deck.phase_shift
-phase_number = deck.phase_number
-grid_length = deck.grid_length
-grid_width = deck.grid_width
-dot_grid_size = (deck.grid_length, deck.grid_width)
-dot_grid_spacing = deck.grid_spacing"""
-
 def calculate_four_phase_camera(list_image, phase_number):
     count = 0
     while count < len(list_image)/phase_number:
@@ -39,8 +22,6 @@ def choix_calibration():
 def dimensions_chessboard():
     while True :
         try:
-            """col = int(input("combien de colonne voulez-vous ? : "))
-            ligne = int(input("combien de lignes voulez-vous ? : "))"""
             col = 6
             ligne = 7
             return col, ligne
@@ -118,32 +99,14 @@ if __name__ == '__main__':
         # Load yamlfile
         deck = Deck('./deck_passive.yaml',methode_de_calibration)
         print(deck)
-        # Get values from the yaml
-        #length_single_fringe = np.minimum(deck.resolution_length / deck.grid_length,
-                                          #deck.resolution_width / deck.grid_width)
-        #mean_pixel_value = deck.mean_pixel_value
-        #amplitude = deck.sinusoidal_amplitude
-        #phase_shift = deck.phase_shift
-        #phase_number = deck.phase_number
+
         chess_columns = deck.chess_columns
         chess_lines = deck.chess_lines
-        #dot_grid_size = (deck.grid_length, deck.grid_width)
-        #dot_grid_spacing = deck.grid_spacing
 
         # Génération du chessboard
         #col_chessboard, ligne_chessboard = dimensions_chessboard()
         chessboard = ChessboardGrid('chessboard',chess_columns,chess_lines)
         chessboard.define_chessboard_target()
-        """cmd = [
-            "python",
-            "Module/calibration_grid_generation/gen_pattern.py",
-            "-o", "chessboard.svg",
-            "-r", str(ligne_chessboard),
-            "-c", str(col_chessboard),
-            "--type", "checkerboard",
-            "-s", str(20)
-        ]
-        subprocess.run(cmd)"""
 
         # renommer (et reformater) les images par téléphone (IPhone) pour la calib passive    JE NE PARVIENS PAS A CHANGER LE FORMAT, JUSTE LE NOM
         list_chemin_photos = []
@@ -178,40 +141,6 @@ if __name__ == '__main__':
         list_object_points, list_image_points, image_gray, stock_image = camera_left.find_corners(chess_columns, chess_lines)
         camera_right = CameraPassive(image_p_right)
         list_object_points, list_image_points, image_gray, stock_image = camera_right.find_corners(chess_columns, chess_lines)
-
-        """# Cherche les coins pour chaque sample image left
-        # termination criteria
-        criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)
-
-        # prepare object points, like (0,0,0), (1,0,0), (2,0,0) ....,(6,5,0)
-        objp = np.zeros(((col_chessboard - 1) * (ligne_chessboard - 1), 3), np.float32)
-        objp[:, :2] = np.mgrid[0:col_chessboard - 1, 0:ligne_chessboard - 1].T.reshape(-1, 2)
-
-        # Arrays to store object points and image points from all the images.
-        objpoints = []  # 3d point in real world space
-        imgpoints = []  # 2d points in image plane.
-
-        for fname in image_p_left:
-            img = cv.imread(fname)
-            gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-
-            # Find the chess board corners
-            ret, corners = cv.findChessboardCorners(gray, (col_chessboard - 1, ligne_chessboard - 1), None)
-
-            # If found, add object points, image points (after refining them)
-            if ret == True:
-                objpoints.append(objp)
-            elif ret == False:
-                print("rien trouvé")
-
-        corners2 = cv.cornerSubPix(gray, corners, (11, 11), (-1, -1), criteria)
-        imgpoints.append(corners2)
-
-        # Draw and display the corners
-        cv.drawChessboardCorners(img, (col_chessboard - 1, ligne_chessboard - 1), corners2, ret)
-        cv.imshow('img', img)
-        cv.waitKey(500)
-        cv.destroyAllWindows()"""
 
     #-------------------Calibration passive uniquement----------------------------------
 
