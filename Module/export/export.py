@@ -92,6 +92,7 @@ class ExportToXML():
         # Write the XML tree to a file
         tree.write("calibration_parameters.xml", encoding="ISO-8859-1", xml_declaration=True)
 
+
     def write_XML_VIC(self, repere_general):
         """Export the calibration data in a XML file.
 
@@ -160,40 +161,42 @@ class ExportToXML():
         print("test")
 
 
+        # Create the root element
+        root = ET.Element("project")
+        root.set("dir", "chemin")
+        root.text = "\n"
+        root.tail = "\n"
 
         # Create the root element
-        root = ET.Element("calibration")
-        root.set("lri", "calibration")
-        root.text = "\n"
+        calibration = ET.SubElement(root,"calibration")
+        calibration.set("lri", "calibration")
+        calibration.text = "\n"
 
         # Create the first camera element
-        camera_left = ET.SubElement(root, "camera")
+        camera_left = ET.SubElement(calibration, "camera")
         camera_left.set("id", "0")
         camera_left.text = f'{center_x_left} {center_y_left} {focal_length_x_left} {focal_length_y_left} {kappa_1_left} {kappa_2_left} {kappa_3_left}'
+        orientation_left = ET.SubElement(camera_left, "orientation")
+        orientation_left.text = f' {alpha} {beta} {gamma}'
+        orientation_left.tail = "\n"
         camera_left.tail = "\n"
 
         # Create the second camera element
-        camera_right = ET.SubElement(root, "camera")
+        camera_right = ET.SubElement(calibration, "camera")
         camera_right.set("id", "1")
         camera_right.text = f'{center_x_right} {center_y_right} {focal_length_x_right} {focal_length_y_right} {kappa_1_right} {kappa_2_right} {kappa_3_right}'
+        orientation_right = ET.SubElement(camera_right, "orientation")
+        orientation_right.text = f' {alpha} {beta} {gamma}'
+        orientation_right.tail = "\n"
         camera_right.tail = "\n"
 
-        # Create orientation
-        orientation = ET.SubElement(root, "orientation")
-        orientation.text = "\n"
-        rotation = ET.SubElement(orientation, "rotation")
-        rotation.text = f'{alpha} {beta} {gamma}'
-        rotation.tail = "\n"
-        translation = ET.SubElement(orientation, "translation")
-        translation.text = f'{translation_x} {translation_y} {translation_z}'
-        translation.tail = "\n"
-        orientation.tail = "\n"
 
         # Create the XML tree
         tree = ET.ElementTree(root)
 
         # Write the XML tree to a file
         tree.write("project.xml", encoding="ISO-8859-1", xml_declaration=True)
+
 
     def rotationMatrixEuler(self, alpha, beta, gamma):
         alpha = radians(alpha)
@@ -209,4 +212,5 @@ class ExportToXML():
 test = [[[4.69177326e+03, 0.00000000e+00, 1.14997865e+03], [0.00000000e+00, 4.69195035e+03, 1.08197998e+03], [0.00000000e+00, 0.00000000e+00, 1.00000000e+00]], [[-6.87284926e-02, -1.53296516e+00,  1.01792327e-03, -3.56298259e-03,  -5.93088358e+01]], [[4.68490841e+03, 0.00000000e+00, 1.13693331e+03], [0.00000000e+00, 4.68644278e+03, 1.05681962e+03], [0.00000000e+00, 0.00000000e+00, 1.00000000e+00]], [[-7.92820681e-02, -5.63249090e+00, -1.31658829e-04, -4.42416335e-03,   2.05720954e+02]], [[ 0.99542649, -0.05189491,  0.08020617], [ 0.05134249,  0.99864113,  0.00893598], [-0.08056091, -0.00477713,  0.99673824]], [[-208.44747426], [   3.10579127], [ -15.67951203]], [ 2.98431905,  4.60041637, -0.5136559 ]]
 
 ExportToXML(test[0], test[1], test[2], test[3],test[6], test[5]).write_XML_VIC([[0,0,0],[0,0,0]])
+
 
