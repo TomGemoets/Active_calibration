@@ -150,9 +150,9 @@ class ExportToXML():
         beta_right = beta0 - beta
         gamma_right = gamma0 - gamma
 
-        translation_x_left = translation_x
-        translation_y_left = translation_y
-        translation_z_left = translation_z
+        translation_x_left = x0
+        translation_y_left = y0
+        translation_z_left = z0
 
         translation_x_right = translation_x - x0
         translation_y_right = translation_y - y0
@@ -175,18 +175,18 @@ class ExportToXML():
         # Create the first camera element
         camera_left = ET.SubElement(calibration, "camera")
         camera_left.set("id", "0")
-        camera_left.text = f'{center_x_left} {center_y_left} {focal_length_x_left} {focal_length_y_left} {kappa_1_left} {kappa_2_left} {kappa_3_left}'
+        camera_left.text = f'{center_x_left} {center_y_left} {focal_length_x_left} {focal_length_y_left} {skew_left} {kappa_1_left} {kappa_2_left} {kappa_3_left}'
         orientation_left = ET.SubElement(camera_left, "orientation")
-        orientation_left.text = f' {alpha} {beta} {gamma}'
+        orientation_left.text = f' {alpha_left} {beta_left} {gamma_left} {translation_x_left} {translation_y_left} {translation_z_left}'
         orientation_left.tail = "\n"
         camera_left.tail = "\n"
 
         # Create the second camera element
         camera_right = ET.SubElement(calibration, "camera")
         camera_right.set("id", "1")
-        camera_right.text = f'{center_x_right} {center_y_right} {focal_length_x_right} {focal_length_y_right} {kappa_1_right} {kappa_2_right} {kappa_3_right}'
+        camera_right.text = f'{center_x_right} {center_y_right} {focal_length_x_right} {focal_length_y_right} {skew_right} {kappa_1_right} {kappa_2_right} {kappa_3_right}'
         orientation_right = ET.SubElement(camera_right, "orientation")
-        orientation_right.text = f' {alpha} {beta} {gamma}'
+        orientation_right.text = f' {alpha_right} {beta_right} {gamma_right} {translation_x_right} {translation_y_right} {translation_z_right}'
         orientation_right.tail = "\n"
         camera_right.tail = "\n"
 
