@@ -148,6 +148,7 @@ class ExportToXML():
         translation_y_left = translation_y
         translation_z_left = translation_z
 
+        print("test")
 
 
 
