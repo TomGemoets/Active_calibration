@@ -114,6 +114,7 @@ class ExportToXML():
         kappa_2_right = self.distortion_coefficient_right[0][1]
         kappa_3_right = self.distortion_coefficient_right[0][4]
 
+
         alpha = self.euler_angles[0]
         beta = self.euler_angles[1]
         gamma = self.euler_angles[2]
