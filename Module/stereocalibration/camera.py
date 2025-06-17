@@ -108,41 +108,6 @@ class CameraActive(Camera):
         cv2.destroyAllWindows()
         return list_object_points, list_image_points, image_gray, stock_image
 
-    #def calibrate(list_object_points, list_image_points, image_gray, stock_image):
-        """Perform the linear calibration from the images of the grid target.
-
-        Keyword arguments:
-        dot_grid_size -- tuple of the number of dots (length, width)
-        dot_grid_spacing -- spacing between each dot in mm
-        list_image --  list of all the calibration image paths
-
-        Returns a list of the grid target properties from ```define_grid_target()```.
-        Returns a list of the positions of the grids in number of pixels on the images.
-        Returns a list of all the image paths.
-        Returns the camera matrix.
-        Returns the distortion coefficients.
-        Returns the rotation vectors estimated for each pattern view.
-        Returns the translation vectors estimated for each pattern view.
-        Returns the total RMS re-projection error.
-        """
-        # Detection of the features on each image
-        """list_object_points, list_image_points, image_gray, stock_image = self.detect_centers()
-
-        # Calibration
-        boolean_calibration, camera_matrix, distortion_coefficient, rotation_camera, translation_camera = cv2.calibrateCamera(list_object_points, list_image_points, image_gray.shape[::-1], None, None)
-
-        #reprojection error
-        mean_error_reprojection = 0
-        for grid_point in range(len(list_object_points)):
-            projection_target, jacobian_matrix = cv2.projectPoints(list_object_points[grid_point], rotation_camera[grid_point], translation_camera[grid_point], camera_matrix, distortion_coefficient)
-            error = np.linalg.norm(list_image_points[grid_point] - projection_target) / len(projection_target)
-            mean_error_reprojection += error
-
-        total_error = mean_error_reprojection/len(list_object_points)
-
-        return list_object_points, list_image_points, stock_image ,camera_matrix, distortion_coefficient, rotation_camera, translation_camera, total_error
-"""
-
 class CameraPassive(Camera):
     def __init__(self, list_image ):
         self.list_images = list_image
