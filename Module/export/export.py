@@ -158,9 +158,6 @@ class ExportToXML():
         translation_y_right = translation_y - y0
         translation_z_right = translation_z - z0
 
-        print("test")
-
-
         # Create the root element
         root = ET.Element("project")
         root.set("dir", "chemin")
