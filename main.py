@@ -153,4 +153,4 @@ if __name__ == '__main__':
 
     # Export to XML file
     ExportToXML(stereo_parameters[0], stereo_parameters[1], stereo_parameters[2], stereo_parameters[3], stereo_parameters[6], stereo_parameters[5]).write_XML()
-
+    ExportToXML(stereo_parameters[0], stereo_parameters[1], stereo_parameters[2], stereo_parameters[3], stereo_parameters[6], stereo_parameters[5]).write_XML_VIC([[0,0,0],[0,0,0]])
