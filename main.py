@@ -5,11 +5,12 @@ import pillow_heif
 import cv2 as cv
 
 # Load yamlfile
-deck = Deck('./deck.yaml')
-deck_passive_gauche = Deck('./Passive_deck_gauche.yaml')
-print(deck)
+#deck = Deck('./deck.yaml')
+#print(deck)
+#deck_passive_gauche = Deck('./Passive_deck_gauche.yaml')
 
-# Get values from the yaml
+
+"""# Get values from the yaml
 length_single_fringe = np.minimum(deck.resolution_length / deck.grid_length, deck.resolution_width / deck.grid_width)
 mean_pixel_value = deck.mean_pixel_value
 amplitude = deck.sinusoidal_amplitude
@@ -18,7 +19,7 @@ phase_number = deck.phase_number
 grid_length = deck.grid_length
 grid_width = deck.grid_width
 dot_grid_size = (deck.grid_length, deck.grid_width)
-dot_grid_spacing = deck.grid_spacing
+dot_grid_spacing = deck.grid_spacing"""
 
 def calculate_four_phase_camera(list_image, phase_number):
     count = 0
@@ -55,6 +56,21 @@ if __name__ == '__main__':
     # Create circular grid target
     if methode_de_calibration == 'a' or methode_de_calibration == 'active':
         print("methode active")
+        # Load yamlfile
+        deck = Deck('./deck.yaml',methode_de_calibration)
+        print(deck)
+        # Get values from the yaml
+        length_single_fringe = np.minimum(deck.resolution_length / deck.grid_length,
+                                          deck.resolution_width / deck.grid_width)
+        mean_pixel_value = deck.mean_pixel_value
+        amplitude = deck.sinusoidal_amplitude
+        phase_shift = deck.phase_shift
+        phase_number = deck.phase_number
+        grid_length = deck.grid_length
+        grid_width = deck.grid_width
+        dot_grid_size = (deck.grid_length, deck.grid_width)
+        dot_grid_spacing = deck.grid_spacing
+
         for each_phase_number in np.arange(phase_number):
             phase = phase_shift * each_phase_number
             target_grid = TargetGrid(length_single_fringe, mean_pixel_value, amplitude, phase, grid_length, grid_width,
@@ -77,45 +93,91 @@ if __name__ == '__main__':
         print('Four-phase shifting for the images from the left camera: done!')
         calculate_four_phase_camera(image_right, phase_number)
         print('Four-phase shifting for the images from the right camera: done!\n')
+
+        # Load calibration image
+        calibration_image_left = Read(deck.path_active_calibration_image, deck.name_image_left,
+                                      deck.extension).grab_image_files()
+        calibration_image_right = Read(deck.path_active_calibration_image, deck.name_image_right,
+                                       deck.extension).grab_image_files()
+        print('Performing the stereo-calibration...\n')
+        # Calibrate camera left
+        camera_left = CameraActive(calibration_image_left,dot_grid_size, dot_grid_spacing)
+        list_object_points, list_image_points, image_gray, stock_image = camera_left.detect_centers()
+        #calibration_left = camera_left.calibrate(list_object_points, list_image_points, image_gray, stock_image)
+
+        # Calibrate camera right
+        camera_right = CameraActive(calibration_image_right, dot_grid_size, dot_grid_spacing) #problème ici
+        list_object_points, list_image_points, image_gray, stock_image = camera_right.detect_centers()
+        #calibration_right = camera_right.calibrate(list_object_points, list_image_points, image_gray, stock_image)
     # -----------------Calibration active uniquement----------------------------------
 
     # ------------------Calibration passive uniquement----------------------------------
     else: #faire la calib passive
+        # Load yamlfile
+        deck = Deck('./deck_passive.yaml',methode_de_calibration)
+        print(deck)
+        # Get values from the yaml
+        #length_single_fringe = np.minimum(deck.resolution_length / deck.grid_length,
+                                          #deck.resolution_width / deck.grid_width)
+        #mean_pixel_value = deck.mean_pixel_value
+        #amplitude = deck.sinusoidal_amplitude
+        #phase_shift = deck.phase_shift
+        #phase_number = deck.phase_number
+        chess_columns = deck.chess_columns
+        chess_lines = deck.chess_lines
+        #dot_grid_size = (deck.grid_length, deck.grid_width)
+        #dot_grid_spacing = deck.grid_spacing
+
         # Génération du chessboard
-        col_chessboard, ligne_chessboard = dimensions_chessboard()
-        cmd = [
+        #col_chessboard, ligne_chessboard = dimensions_chessboard()
+        chessboard = ChessboardGrid('chessboard',chess_columns,chess_lines)
+        chessboard.define_chessboard_target()
+        """cmd = [
             "python",
-            "Module/chessboard generation/gen_pattern.py",
+            "Module/calibration_grid_generation/gen_pattern.py",
             "-o", "chessboard.svg",
             "-r", str(ligne_chessboard),
             "-c", str(col_chessboard),
             "--type", "checkerboard",
             "-s", str(20)
         ]
-        subprocess.run(cmd)
+        subprocess.run(cmd)"""
 
         # renommer (et reformater) les images par téléphone (IPhone) pour la calib passive    JE NE PARVIENS PAS A CHANGER LE FORMAT, JUSTE LE NOM
+        list_chemin_photos = []
         chemin_photos_gauche = r"C:\Users\patri\PycharmProjects\Active_calibrationV2\Images_calib_passive_gauche"
+        list_chemin_photos.append(chemin_photos_gauche)
+        chemin_photos_droite = r"C:\Users\patri\PycharmProjects\Active_calibrationV2\Images_calib_passive_droite"
+        list_chemin_photos.append(chemin_photos_droite)
         extensions = ['.jpg', '.jpeg', '.png', '.heic']
-        # compteur = 0
-        position = 0
-        for nom_fichier in os.listdir(chemin_photos_gauche):
-            nom_complet = os.path.join(chemin_photos_gauche, nom_fichier)
 
-            if os.path.isfile(nom_complet):
-                _, ext = os.path.splitext(nom_fichier)
-                if ext.lower() in extensions:
-                    ext = '.jpg'
-                    nouveau_nom_fichier = f"{position:03d}_0{ext}"
-                    nouveau_chemin = os.path.join(chemin_photos_gauche, nouveau_nom_fichier)
-                    os.rename(nom_complet, nouveau_chemin)
-                    print(f"{nom_fichier} → {nouveau_nom_fichier}")
-                    position += 1
+        camera = -1
+        for chemin in list_chemin_photos:
+            # compteur = 0
+            position = 0
+            camera += 1 #caméra gauche
+            for nom_fichier in os.listdir(chemin):
+                nom_chemin_complet = os.path.join(chemin, nom_fichier)
+                if os.path.isfile(nom_chemin_complet):
+                    _, ext = os.path.splitext(nom_fichier)
+                    if ext.lower() in extensions:
+                        ext = '.jpg'
+                        nouveau_nom_fichier = f"{position:03d}_{camera}{ext}"
+                        nouveau_chemin_complet = os.path.join(chemin, nouveau_nom_fichier)
+                        os.rename(nom_chemin_complet, nouveau_chemin_complet)
+                        print(f"{nom_fichier} → {nouveau_nom_fichier}")
+                        position += 1
 
-        image_p_left = Read(deck_passive_gauche.path_target_image, deck_passive_gauche.name_image_left,
-                        deck_passive_gauche.extension).grab_image_files()
+        image_p_left = Read(deck.path_left_calibration_image, deck.name_image_left,
+                                      deck.extension).grab_image_files()
+        image_p_right = Read(deck.path_right_calibration_image, deck.name_image_right,
+                        deck.extension).grab_image_files()
+        camera_left = CameraPassive(image_p_left)
+        list_object_points, list_image_points, image_gray, stock_image = camera_left.find_corners(chess_columns, chess_lines)
+        camera_right = CameraPassive(image_p_right)
+        list_object_points, list_image_points, image_gray, stock_image = camera_right.find_corners(chess_columns, chess_lines)
 
-        # Cherche les coins pour chaque sample image left
+        """# Cherche les coins pour chaque sample image left
         # termination criteria
         criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
@@ -147,21 +209,12 @@ if __name__ == '__main__':
         cv.drawChessboardCorners(img, (col_chessboard - 1, ligne_chessboard - 1), corners2, ret)
         cv.imshow('img', img)
         cv.waitKey(500)
-        cv.destroyAllWindows()
+        cv.destroyAllWindows()"""
 
-    # ------------------Calibration passive uniquement----------------------------------
+    #-------------------Calibration passive uniquement----------------------------------
 
-    # Load calibration image
-    calibration_image_left = Read(deck.path_calibration_image, deck.name_image_left, deck.extension).grab_image_files()
-    calibration_image_right = Read(deck.path_calibration_image, deck.name_image_right, deck.extension).grab_image_files()
-    print('Performing the stereo-calibration...\n')
-    # Calibrate camera left
-    camera_left = Camera(dot_grid_size, dot_grid_spacing, calibration_image_left)
-    calibration_left = camera_left.calibrate()
-
-    # Calibrate camera right
-    camera_right = Camera(dot_grid_size, dot_grid_spacing, calibration_image_right)
-    calibration_right = camera_right.calibrate()
+    calibration_left = camera_left.calibrate(list_object_points, list_image_points, image_gray, stock_image)
+    calibration_right = camera_right.calibrate(list_object_points, list_image_points, image_gray, stock_image)
 
     # Perform stereo calibration
     stereo_setup = StereoCameras(calibration_left, calibration_right)

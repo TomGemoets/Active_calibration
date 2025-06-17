@@ -1,7 +1,7 @@
 import numpy as np
 import os
 from PIL import Image
-
+#rajouter la génération du chessboard ici
 class CircularFringe():
     def __init__(self, length_pixel, mean_intensity, amplitude, phase):
         self.length_pixel = length_pixel

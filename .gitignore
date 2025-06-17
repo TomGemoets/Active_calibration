@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 
 # Results folder and files
-Four_phase_images/
+For_Active_Calibration_images/
 Target_images/
 calibration_parameters.xml
 

@@ -11,14 +11,15 @@ class Deck():
     Returns a dictionary of all the inputs
     """
     
-    def __init__(self, inputhpath):
+    def __init__(self, inputhpath, methode_calibarge):
         if not os.path.exists(inputhpath):
             print("File " + inputhpath)
             sys.exit(1)
-        else:
+        elif os.path.exists(inputhpath) and ( methode_calibarge == 'a' or methode_calibarge == 'active'):
             with open(inputhpath,'r') as f:
                 ## Container of the tags parsed from the yaml file
                 self.doc = yaml.load(f, Loader=yaml.BaseLoader)
+                print(self.doc)
 
                 # Load grid parameters
                 self.grid_parameters = self.doc['grid_parameters']
@@ -49,5 +50,28 @@ class Deck():
                 self.name_image_left = self.image_properties['name_image_left']
                 self.name_image_right = self.image_properties['name_image_right']
                 self.path_target_image = self.image_properties['path_target_image']
-                self.path_calibration_image = self.image_properties['path_calibration_image']
+                self.path_active_calibration_image = self.image_properties['path_active_calibration_image']
+                self.path_left_calibration_image = self.image_properties['path_left_calibration_image']
+                self.path_right_calibration_image = self.image_properties['path_right_calibration_image']
+                self.extension = self.image_properties['extension']
+
+        else:
+            with open(inputhpath,'r') as f:
+                ## Container of the tags parsed from the yaml file
+                self.doc = yaml.load(f, Loader=yaml.BaseLoader)
+                print(self.doc)
+
+                # Load grid parameters
+                self.grid_parameters = self.doc['grid_parameters']
+                self.chess_columns = np.intc(self.grid_parameters['chess_columns'])
+                self.chess_lines = np.intc(self.grid_parameters['chess_lines'])
+
+                # Load image properties
+                self.image_properties = self.doc['image_properties']
+                self.name_image_left = self.image_properties['name_image_left']
+                self.name_image_right = self.image_properties['name_image_right']
+                #self.path_target_image = self.image_properties['path_target_image']
+                #self.path_active_calibration_image = self.image_properties['path_active_calibration_image']
+                self.path_left_calibration_image = self.image_properties['path_left_calibration_image']
+                self.path_right_calibration_image = self.image_properties['path_right_calibration_image']
                 self.extension = self.image_properties['extension']

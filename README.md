@@ -209,8 +209,8 @@ plate_properties:
 image_properties:
   name_image_left: _0 # suffix for images from the left camera
   name_image_right: _1 # suffix for images from the right camera
-  path_target_image: Calibration_images # file where images of the active targets are saved
-  path_calibration_image: Four_phase_images # file where images of the phase maps are saved
+  path_target_image: Pre_Phase_Mapping_images # file where images of the active targets are saved
+  path_calibration_image: For_Active_Calibration_images # file where images of the phase maps are saved
   extension: .tif
 ```
 

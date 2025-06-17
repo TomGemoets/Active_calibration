@@ -23,13 +23,13 @@ class Read():
             image.sort()
 
             if not image:
-                print('Please load the calibration images in the folder "Calibration_images" to perform the active calibration.\n')
+                print('Please load the calibration images in the folder "Pre_Phase_Mapping_images" to perform the active calibration.\n')
                 exit()
             else:
                 return image
         else:
             os.mkdir('./' + self.path_file)
-            print('A folder "Calibration_images" has been created to load the images of the active target for the calibration.')
+            print('A folder "Pre_Phase_Mapping_images" has been created to load the images of the active target for the calibration.')
             print('Please load the calibration images in this folder to perform the active calibration.\n')
             exit()
 
