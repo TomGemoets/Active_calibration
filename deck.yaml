@@ -1,7 +1,7 @@
 #contient toutes les infos conernant le support du pattern (ordi)
 grid_parameters:
   grid_length: 6 # number of fringes
-  grid_width: 3 # number of fringes
+  grid_width: 4 # number of fringes
 
 screen_resolution:
   resolution_length: 2388 # number of pixels
@@ -9,7 +9,7 @@ screen_resolution:
 
 fringe_intensities: # pixels intensities set by default
   mean_pixel_value: 160 # mean intensity of a circular fringe
-  sinusoidal_amplitude: 80 # amplitude of the sinusoidal pattern
+  sinusoidal_amplitude: 95 # amplitude of the sinusoidal pattern
 
 phase_properties:
   phase_shift: 90 #deg

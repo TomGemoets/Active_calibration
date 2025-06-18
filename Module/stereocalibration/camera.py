@@ -31,7 +31,6 @@ class Camera():
         """
         # Detection of the features on each image
         #list_object_points, list_image_points, image_gray, stock_image = self.detect_centers()
-
         # Calibration
         boolean_calibration, camera_matrix, distortion_coefficient, rotation_camera, translation_camera = cv2.calibrateCamera(list_object_points, list_image_points, image_gray.shape[::-1], None, None)
 
@@ -93,6 +92,8 @@ class CameraActive(Camera):
             image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
             boolean_detection, circle_center = cv2.findCirclesGrid(image_gray, self.dot_grid_size, flags=(cv2.CALIB_CB_SYMMETRIC_GRID + cv2.CALIB_CB_CLUSTERING), blobDetector = detector)
+            #boolean_detection, circle_center = cv2.findCirclesGrid(image_gray, self.dot_grid_size, flags=(cv2.CALIB_CB_SYMMETRIC_GRID + cv2.CALIB_CB_CLUSTERING))
+
 
             if boolean_detection == True:
                 active_dot_target = ActiveDottedGrid("plaque de calibrage active", self.dot_grid_size, self.dot_grid_spacing, self.list_image)
@@ -136,7 +137,7 @@ class CameraPassive(Camera):
 
             # If found, add object points, image points (after refining them)
             if ret == True:
-                objpoints.append(objp)
+                objpoints.append(objp*20)
             elif ret == False:
                 print("rien trouvé")
 

@@ -83,13 +83,15 @@ if __name__ == '__main__':
                                        deck.extension).grab_image_files()
         print('Performing the stereo-calibration...\n')
         # Calibrate camera left
+        print("Nombre d'images left:", len(calibration_image_left))
         camera_left = CameraActive(calibration_image_left,dot_grid_size, dot_grid_spacing)
-        list_object_points, list_image_points, image_gray, stock_image = camera_left.detect_centers()
+        list_object_points_left, list_image_points_left, image_gray_left, stock_image_left = camera_left.detect_centers()
         #calibration_left = camera_left.calibrate(list_object_points, list_image_points, image_gray, stock_image)
 
         # Calibrate camera right
+        print("Nombre d'images right:", len(calibration_image_right))
         camera_right = CameraActive(calibration_image_right, dot_grid_size, dot_grid_spacing) #problème ici
-        list_object_points, list_image_points, image_gray, stock_image = camera_right.detect_centers()
+        list_object_points_right, list_image_points_right, image_gray_right, stock_image_right = camera_right.detect_centers()
         #calibration_right = camera_right.calibrate(list_object_points, list_image_points, image_gray, stock_image)
     # -----------------Calibration active uniquement----------------------------------
 
@@ -110,11 +112,11 @@ if __name__ == '__main__':
 
         # renommer (et reformater) les images par téléphone (IPhone) pour la calib passive    JE NE PARVIENS PAS A CHANGER LE FORMAT, JUSTE LE NOM
         list_chemin_photos = []
-        chemin_photos_gauche = r"C:\Users\patri\PycharmProjects\Active_calibrationV2\Images_calib_passive_gauche"
+        chemin_photos_gauche = r"Images_calib_passive_gauche"
         list_chemin_photos.append(chemin_photos_gauche)
-        chemin_photos_droite = r"C:\Users\patri\PycharmProjects\Active_calibrationV2\Images_calib_passive_droite"
+        chemin_photos_droite = r"Images_calib_passive_droite"
         list_chemin_photos.append(chemin_photos_droite)
-        extensions = ['.jpg', '.jpeg', '.png', '.heic']
+        extensions = ['.jpg', '.jpeg', '.png', '.heic','.tif']
 
         camera = -1
         for chemin in list_chemin_photos:
@@ -126,7 +128,7 @@ if __name__ == '__main__':
                 if os.path.isfile(nom_chemin_complet):
                     _, ext = os.path.splitext(nom_fichier)
                     if ext.lower() in extensions:
-                        ext = '.jpg'
+                        ext = '.tif'
                         nouveau_nom_fichier = f"{position:03d}_{camera}{ext}"
                         nouveau_chemin_complet = os.path.join(chemin, nouveau_nom_fichier)
                         os.rename(nom_chemin_complet, nouveau_chemin_complet)
@@ -137,20 +139,30 @@ if __name__ == '__main__':
                                       deck.extension).grab_image_files()
         image_p_right = Read(deck.path_right_calibration_image, deck.name_image_right,
                         deck.extension).grab_image_files()
+        print("Nombre d'images :", len(image_p_left), len(image_p_right))
+
+
         camera_left = CameraPassive(image_p_left)
-        list_object_points, list_image_points, image_gray, stock_image = camera_left.find_corners(chess_columns, chess_lines)
+        #camera_left = CameraActive(image_p_left, dot_grid_size, dot_grid_spacing)
+        list_object_points_left, list_image_points_left, image_gray_left, stock_image_left = camera_left.find_corners(chess_columns, chess_lines)
+        #list_object_points_left, list_image_points_left, image_gray_left, stock_image_left = camera_left.detect_centers()
+
         camera_right = CameraPassive(image_p_right)
-        list_object_points, list_image_points, image_gray, stock_image = camera_right.find_corners(chess_columns, chess_lines)
+        list_object_points_right, list_image_points_right, image_gray_right, stock_image_right = camera_right.find_corners(chess_columns, chess_lines)
+        #camera_right = CameraActive(image_p_right, dot_grid_size, dot_grid_spacing)
+        #list_object_points_right, list_image_points_right, image_gray_right, stock_image_right = camera_right.detect_centers()
 
     #-------------------Calibration passive uniquement----------------------------------
-
-    calibration_left = camera_left.calibrate(list_object_points, list_image_points, image_gray, stock_image)
-    calibration_right = camera_right.calibrate(list_object_points, list_image_points, image_gray, stock_image)
+    print("Nombre d'images :", len(list_object_points_left), len(list_image_points_left))
+    print("Nombre d'images :", len(list_object_points_right), len(list_image_points_right))
+    calibration_left = camera_left.calibrate(list_object_points_left, list_image_points_left, image_gray_left, stock_image_left)
+    calibration_right = camera_right.calibrate(list_object_points_right, list_image_points_right, image_gray_right, stock_image_right)
 
     # Perform stereo calibration
     stereo_setup = StereoCameras(calibration_left, calibration_right)
+    #print('stereo setup : ' ,stereo_setup)
     stereo_parameters = stereo_setup.stereo_calibrate()
-
+    #print('stereo param : ', stereo_parameters)
     # Export to XML file
     ExportToXML(stereo_parameters[0], stereo_parameters[1], stereo_parameters[2], stereo_parameters[3], stereo_parameters[6], stereo_parameters[5]).write_XML()
     ExportToXML(stereo_parameters[0], stereo_parameters[1], stereo_parameters[2], stereo_parameters[3], stereo_parameters[6], stereo_parameters[5]).write_XML_VIC([[0,0,0],[0,0,0]])

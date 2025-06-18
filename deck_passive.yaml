@@ -10,4 +10,4 @@ image_properties:
   path_left_calibration_image : Images_calib_passive_gauche
   path_right_calibration_image : Images_calib_passive_droite
   #a terme il faudra un répertoire pour la caméra gauche et un autre pour le droit mais les deux seront pour active ou passive
-  extension: .jpg
+  extension: .tif
