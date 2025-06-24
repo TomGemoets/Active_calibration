@@ -4,6 +4,7 @@ from PIL import Image
 import pillow_heif
 import cv2 as cv
 
+
 def calculate_four_phase_camera(list_image, phase_number):
     count = 0
     while count < len(list_image)/phase_number:
@@ -31,7 +32,7 @@ def dimensions_chessboard():
 if __name__ == '__main__':
     #Demande à l'utilisateur s'il veut faire de la calibration Passive ou Active
     methode_de_calibration = choix_calibration()
-    #methode_de_calibration = 'a'
+    #methode_de_calibration = 'p'
 
     # -----------------Calibration active uniquement----------------------------------
     # Create circular grid target
@@ -110,30 +111,20 @@ if __name__ == '__main__':
         chessboard = ChessboardGrid('chessboard',chess_columns,chess_lines)
         chessboard.define_chessboard_target()
 
+        go_calib = input("Avez-vous chargé les images dans les dossiers image pour calibration passive ?(oui/non) :")
+        while go_calib != 'oui':
+            print('Veuillez charger des images dans les dossier de calibration')
+            go_calib = input("Avez-vous chargé les images dans les dossiers image pour calibration passive ?(oui/non) :")
+
         # renommer (et reformater) les images par téléphone (IPhone) pour la calib passive    JE NE PARVIENS PAS A CHANGER LE FORMAT, JUSTE LE NOM
         list_chemin_photos = []
-        chemin_photos_gauche = r"Images_calib_passive_gauche"
+        chemin_photos_gauche = r"C:\Users\patri\PycharmProjects\Active_calibrationV2\Images_calib_passive_gauche"
         list_chemin_photos.append(chemin_photos_gauche)
-        chemin_photos_droite = r"Images_calib_passive_droite"
+        chemin_photos_droite = r"C:\Users\patri\PycharmProjects\Active_calibrationV2\Images_calib_passive_droite"
         list_chemin_photos.append(chemin_photos_droite)
-        extensions = ['.jpg', '.jpeg', '.png', '.heic','.tif']
-
-        camera = -1
-        for chemin in list_chemin_photos:
-            # compteur = 0
-            position = 0
-            camera += 1 #caméra gauche
-            for nom_fichier in os.listdir(chemin):
-                nom_chemin_complet = os.path.join(chemin, nom_fichier)
-                if os.path.isfile(nom_chemin_complet):
-                    _, ext = os.path.splitext(nom_fichier)
-                    if ext.lower() in extensions:
-                        ext = '.tif'
-                        nouveau_nom_fichier = f"{position:03d}_{camera}{ext}"
-                        nouveau_chemin_complet = os.path.join(chemin, nouveau_nom_fichier)
-                        os.rename(nom_chemin_complet, nouveau_chemin_complet)
-                        print(f"{nom_fichier} → {nouveau_nom_fichier}")
-                        position += 1
+        extensions = ['.jpg', '.jpeg', '.png', '.heic', '.tiff']
+        doss = DossierPhoto(list_chemin_photos, extensions)
+        doss.renommer_images()
 
         image_p_left = Read(deck.path_left_calibration_image, deck.name_image_left,
                                       deck.extension).grab_image_files()
@@ -160,7 +151,6 @@ if __name__ == '__main__':
 
     # Perform stereo calibration
     stereo_setup = StereoCameras(calibration_left, calibration_right)
-    #print('stereo setup : ' ,stereo_setup)
     stereo_parameters = stereo_setup.stereo_calibrate()
     #print('stereo param : ', stereo_parameters)
     # Export to XML file

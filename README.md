@@ -71,6 +71,14 @@ with, $f_x = S_x f$ and $f_y = S_y f$, the focal lengths in pixels along the $x$
 This approach of using a calibration target is the most common and widely adopted due to the ease of creating such a target.
 Nevertheless, it comes with notable drawbacks that will be detailed below.
 
+## Passive calibration 
+
+Passive calibration is performed using a calibration plate. A black and white checkerboard is commonly used, but other patterns can also work.
+All the checkerboard’s dimensions are known and provided to the logic. The idea is to take images from different viewing angles and pass them into a function.
+This function will detect and extract the positions of specific points on the checkerboard.
+Since the logic knows the real-world dimensions, it can associate the digital positions (measured in pixels) with their actual metric positions.
+The result of this calibration returns the intrinsic parameters of the cameras, such as focal length and distortion coefficients.
+
 ## Active calibration and four-phase shifting method
 
 The active calibration method employs specialized active targets to enhance the calibration process. 
@@ -140,7 +148,7 @@ Overall, active calibration with the four-phase shifting method and active targe
 
 # Main features
 
-All the preceding sections aimed to describe the method of stereo calibration with a conventional or active target. 
+All the preceding sections aimed to describe the method of stereo calibration with a conventional (passive) or active target. 
 To achieve this, the camera model, the effect of distortion, and the calibration procedure were explained. 
 A whole section was dedicated to active calibration and its formulation to understand its operation for the subsequent steps. 
 The goal of this project is to develop a comprehensive Python package facilitating active calibration of a stereo system consisting of two cameras and obtaining a 3D reconstruction of the captured scene.
@@ -173,7 +181,12 @@ pip install -r requirement.txt
 ```
 
 ## Usage
+**Passive calibration**
+It is necessary to save the images captured by the left and right cameras in two separate folders. These images will be used to perform the stereo calibration of the cameras.
+Additionally, a valid deck_passive.yaml file is essential to customize the checkerboard and run the code correctly.
+A template of a valid deck is available in the current folder.
 
+**Active calibration**
 This package requires images of the active target in the folder "Calibration_images" and a valid `deck.yaml` file to run.
 An example of calibration images is provided in the current folder.
 
@@ -215,7 +228,20 @@ image_properties:
 ```
 
 ## How it works...
+At program launch, the user is prompted to choose whether to perform a passive or active calibration.
 
+-Passive: enter 'p' or 'passive'
+-Active: enter 'a' or 'active'
+
+**Passive**
+The deck_passive.yaml file is loaded, and the program retrieves the parameters required to generate the checkerboard.
+This checkerboard opens in a web page that you can download, print, and use as a calibration plate.
+Once your images are taken, upload them to the folders 'Images_calib_passive_gauche' and 'Images_calib_passive_droite'.
+As soon as you confirm that the images are properly loaded, the calibration is performed automatically.
+
+The results are then converted into a format compatible with VIC3D.
+
+**Active**
 The first feature enables the generation of images of the circular fringe patterns for different phase shifts by specifying the pattern's geometry. 
 For example, entering `grid_length: 6` and `grid_width: 3` would yield four images of a 3x6 circular fringe pattern shifted at $[0, \pi/2, \pi, 3\pi/2]$, ready for display on a screen of resolution `resolution_length: 2388`, `resolution_width: 1668`.
 To perform the four-phase shifting method and the stereo-calibration of two cameras, the user will provide images from both cameras of the previously generated active targets from various positions and orientations. The images should be named as the following:

@@ -138,11 +138,10 @@ class CameraPassive(Camera):
             # If found, add object points, image points (after refining them)
             if ret == True:
                 objpoints.append(objp*20)
+                corners2 = cv2.cornerSubPix(gray, corners, (11, 11), (-1, -1), criteria)
+                imgpoints.append(corners2)
             elif ret == False:
                 print("rien trouvé")
-
-        corners2 = cv2.cornerSubPix(gray, corners, (11, 11), (-1, -1), criteria)
-        imgpoints.append(corners2)
 
         # Draw and display the corners
         cv2.drawChessboardCorners(img, (col_chessboard - 1, ligne_chessboard - 1), corners2, ret)

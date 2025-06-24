@@ -16,6 +16,7 @@ class GridTarget():
 
         Returns an array of all the positions in mm of the grids.
         """
+
         grid_target_points = np.zeros((self.dot_grid_size[0] * self.dot_grid_size[1], 3), np.float32)
         grid_target_points[:, :2] = np.mgrid[0: self.dot_grid_size[0], 0: self.dot_grid_size[1]].T.reshape(-1,
                                                                                                            2) * self.dot_grid_spacing
@@ -49,10 +50,37 @@ class ChessboardGrid(GridTarget):
         self.columns = columns
         self.lines = lines
 
+    """Create grid target from the grid size and the grid spacing
+
+            Keyword arguments:
+            dot_grid_size -- tuple of the number of dots (length, width)
+            dot_grid_spacing -- spacing between each dot in mm
+
+            Returns an array of all the positions in mm of the grids.
+            """
+
+    # Génération du chessboard
+    # col_chessboard, ligne_chessboard = dimensions_chessboard()
+
+
 
     # Define the grid of the calibration target
     def define_chessboard_target(self):
-        """Create grid target from the grid size and the grid spacing
+
+        cmd = [
+            "python",
+            "Module/calibration_grid_generation/gen_pattern.py",
+            "-o", "chess.svg",
+            "-r", str(self.lines),
+            "-c", str(self.columns),
+            "--type", "checkerboard",
+            "-s", str(20)
+        ]
+        subprocess.run(cmd)
+
+
+
+"""Create grid target from the grid size and the grid spacing
 
         Keyword arguments:
         dot_grid_size -- tuple of the number of dots (length, width)
@@ -63,16 +91,3 @@ class ChessboardGrid(GridTarget):
 
         # Génération du chessboard
         #col_chessboard, ligne_chessboard = dimensions_chessboard()
-        cmd = [
-            "python",
-            "Module/calibration_grid_generation/gen_pattern.py",
-            "-o", "chessboard.svg",
-            "-r", str(self.lines),
-            "-c", str(self.columns),
-            "--type", "checkerboard",
-            "-s", str(20)
-        ]
-        subprocess.run(cmd)
-
-
-
