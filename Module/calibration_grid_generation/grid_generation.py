@@ -33,10 +33,6 @@ class ActiveDottedGrid(GridTarget):
     def define_dotted_grid_target(self):
         """Create grid target from the grid size and the grid spacing
 
-        Keyword arguments:
-        dot_grid_size -- tuple of the number of dots (length, width)
-        dot_grid_spacing -- spacing between each dot in mm
-
         Returns an array of all the positions in mm of the grids.
         """
         grid_target_points = np.zeros((self.dot_grid_size[0] * self.dot_grid_size[1], 3), np.float32)
@@ -50,22 +46,15 @@ class ChessboardGrid(GridTarget):
         self.columns = columns
         self.lines = lines
 
-    """Create grid target from the grid size and the grid spacing
-
-            Keyword arguments:
-            dot_grid_size -- tuple of the number of dots (length, width)
-            dot_grid_spacing -- spacing between each dot in mm
-
-            Returns an array of all the positions in mm of the grids.
-            """
-
     # Génération du chessboard
     # col_chessboard, ligne_chessboard = dimensions_chessboard()
 
-
-
     # Define the grid of the calibration target
     def define_chessboard_target(self):
+        """Create chessboard target from the number of columns and lines
+
+            calls gen_pattern by the terminal with subprocess.run()
+            """
 
         cmd = [
             "python",
@@ -79,15 +68,3 @@ class ChessboardGrid(GridTarget):
         subprocess.run(cmd)
 
 
-
-"""Create grid target from the grid size and the grid spacing
-
-        Keyword arguments:
-        dot_grid_size -- tuple of the number of dots (length, width)
-        dot_grid_spacing -- spacing between each dot in mm
-
-        Returns an array of all the positions in mm of the grids.
-        """
-
-        # Génération du chessboard
-        #col_chessboard, ligne_chessboard = dimensions_chessboard()

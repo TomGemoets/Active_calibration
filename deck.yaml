@@ -5,7 +5,7 @@ grid_parameters:
 
 screen_resolution:
   resolution_length: 2388 # number of pixels
-  resolution_width: 1668  # number of pixels
+  resolution_width: 1592  # number of pixels
 
 fringe_intensities: # pixels intensities set by default
   mean_pixel_value: 160 # mean intensity of a circular fringe
@@ -16,7 +16,7 @@ phase_properties:
   number: 4       # four shift in total
 
 plate_properties:
-  grid_spacing: 80 #mm
+  grid_spacing: 38 #mm
 
 image_properties:
   name_image_left: _0 # suffix for images from the left camera
@@ -26,4 +26,4 @@ image_properties:
   path_left_calibration_image : Images_calib_passive_gauche
   path_right_calibration_image : Images_calib_passive_droite
   #a terme il faudra un répertoire pour la caméra gauche et un autre pour le droit mais les deux seront pour active ou passive
-  extension: .tif
+  extension: .tiff

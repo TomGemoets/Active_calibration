@@ -12,7 +12,10 @@ Subpackages
    Module.fourphase
    Module.read
    Module.stereocalibration
+   Module.photo
+   Module.calibration_grid_generation
    Module.target
+
 
 Module contents
 ---------------

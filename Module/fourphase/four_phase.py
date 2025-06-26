@@ -16,7 +16,7 @@ class FourPhase():
 
         Returns the position number and the camera number.
         """
-        folder, filename_extansion = self.list_image[0].split('/',1)
+        folder, filename_extansion = self.list_image[0].split('\\',1)
         filename, extansion = filename_extansion.split('.',1)
         position_number , phase_value, camera_number = filename.split('_',3)
         return position_number, camera_number
@@ -92,8 +92,8 @@ class FourPhase():
         #cv2.imshow('Four phase yield', four_phase_image)
         #cv2.waitKey(500)
         if os.path.exists('./For_Active_Calibration_images'):
-            cv2.imwrite('./For_Active_Calibration_images/' + self.position_number + '_' + self.camera_number + '.tif', four_phase_image)
+            cv2.imwrite('./For_Active_Calibration_images/' + self.position_number + '_' + self.camera_number + '.tiff', four_phase_image)
         else:
             os.mkdir('./For_Active_Calibration_images')
-            cv2.imwrite('./For_Active_Calibration_images/' + self.position_number + '_' + self.camera_number + '.tif', four_phase_image)
+            cv2.imwrite('./For_Active_Calibration_images/' + self.position_number + '_' + self.camera_number + '.tiff', four_phase_image)
         #cv2.destroyAllWindows()

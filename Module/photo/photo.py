@@ -5,20 +5,14 @@ class DossierPhoto:
         self.list_chemin_dossier = list_chemin_dossier
         self.list_extension = list_extension
 
-    '''
-    Cette méthode permet de renommer chaque image stockée dans le dossier de photos de la caméra gauche et droite
-    
-    Chaque image dans l'ordre seront identifiées par un numéro correspondant à la variable "position"
-    
-    Les images de gauche prendrons le suffixe _0 
-    Les images de droite prendrons le suffixe _1 
-    
-    Ce code change le format de l'image dans l'explorateur de fichier mais pour le bon fonctionnement de l'exécution il est
-    conseillé de modifier le format de l'image à l'origine par un format qui est lisible par PyCharm
-    
-    retourn 
-    '''
     def renommer_images(self):
+        """
+        Rename each image from the left and right directory indicating the position and the camera left/right
+
+        The images on the left will have the suffix _0
+        The Images on the right will have the suffixed _1
+
+        """
         camera = -1
         for chemin in self.list_chemin_dossier:
             # compteur = 0

@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Module package &#8212; Active_calibration 2024-03-20 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
     <script src="_static/documentation_options.js?v=27c119b7"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -51,7 +52,9 @@
 <li class="toctree-l2"><a class="reference internal" href="Module.export.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Module.export.html#module-Module.export.export">Module.export.export module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Module.export.html#Module.export.export.ExportToXML"><code class="docutils literal notranslate"><span class="pre">ExportToXML</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.export.html#Module.export.export.ExportToXML.rotationMatrixEuler"><code class="docutils literal notranslate"><span class="pre">ExportToXML.rotationMatrixEuler()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="Module.export.html#Module.export.export.ExportToXML.write_XML"><code class="docutils literal notranslate"><span class="pre">ExportToXML.write_XML()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.export.html#Module.export.export.ExportToXML.write_XML_VIC"><code class="docutils literal notranslate"><span class="pre">ExportToXML.write_XML_VIC()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -90,11 +93,14 @@
 <li class="toctree-l2"><a class="reference internal" href="Module.stereocalibration.html#module-Module.stereocalibration.camera">Module.stereocalibration.camera module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Module.stereocalibration.html#Module.stereocalibration.camera.Camera"><code class="docutils literal notranslate"><span class="pre">Camera</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="Module.stereocalibration.html#Module.stereocalibration.camera.Camera.calibrate"><code class="docutils literal notranslate"><span class="pre">Camera.calibrate()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="Module.stereocalibration.html#Module.stereocalibration.camera.Camera.detect_centers"><code class="docutils literal notranslate"><span class="pre">Camera.detect_centers()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="Module.stereocalibration.html#Module.stereocalibration.camera.GridTarget"><code class="docutils literal notranslate"><span class="pre">GridTarget</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="Module.stereocalibration.html#Module.stereocalibration.camera.GridTarget.define_grid_target"><code class="docutils literal notranslate"><span class="pre">GridTarget.define_grid_target()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Module.stereocalibration.html#Module.stereocalibration.camera.CameraActive"><code class="docutils literal notranslate"><span class="pre">CameraActive</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.stereocalibration.html#Module.stereocalibration.camera.CameraActive.detect_centers"><code class="docutils literal notranslate"><span class="pre">CameraActive.detect_centers()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.stereocalibration.html#Module.stereocalibration.camera.CameraPassive"><code class="docutils literal notranslate"><span class="pre">CameraPassive</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.stereocalibration.html#Module.stereocalibration.camera.CameraPassive.find_corners"><code class="docutils literal notranslate"><span class="pre">CameraPassive.find_corners()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -107,6 +113,262 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="Module.stereocalibration.html#module-Module.stereocalibration">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Module.photo.html">Module.photo package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Module.photo.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Module.photo.html#module-Module.photo.photo">Module.photo.photo module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Module.photo.html#Module.photo.photo.DossierPhoto"><code class="docutils literal notranslate"><span class="pre">DossierPhoto</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.photo.html#Module.photo.photo.DossierPhoto.renommer_images"><code class="docutils literal notranslate"><span class="pre">DossierPhoto.renommer_images()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Module.photo.html#module-Module.photo">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Module.calibration_grid_generation.html">Module.calibration_grid_generation package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Module.calibration_grid_generation.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Module.calibration_grid_generation.html#module-calibration-grid-generation-gen-pattern-module">Module.calibration_grid_generation.gen_pattern module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Module.calibration_grid_generation.html#module-Module.calibration_grid_generation.grid_generation">Module.calibration_grid_generation.grid_generation module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.grid_generation.ActiveDottedGrid"><code class="docutils literal notranslate"><span class="pre">ActiveDottedGrid</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.grid_generation.ActiveDottedGrid.define_dotted_grid_target"><code class="docutils literal notranslate"><span class="pre">ActiveDottedGrid.define_dotted_grid_target()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.grid_generation.ChessboardGrid"><code class="docutils literal notranslate"><span class="pre">ChessboardGrid</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.grid_generation.ChessboardGrid.define_chessboard_target"><code class="docutils literal notranslate"><span class="pre">ChessboardGrid.define_chessboard_target()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.grid_generation.GridTarget"><code class="docutils literal notranslate"><span class="pre">GridTarget</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.grid_generation.GridTarget.define_dotted_grid_target"><code class="docutils literal notranslate"><span class="pre">GridTarget.define_dotted_grid_target()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Module.calibration_grid_generation.html#module-Module.calibration_grid_generation.svgfig">Module.calibration_grid_generation.svgfig module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Axes"><code class="docutils literal notranslate"><span class="pre">Axes</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Axes.SVG"><code class="docutils literal notranslate"><span class="pre">Axes.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Axes.defaults"><code class="docutils literal notranslate"><span class="pre">Axes.defaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Axes.text_defaults"><code class="docutils literal notranslate"><span class="pre">Axes.text_defaults</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Curve"><code class="docutils literal notranslate"><span class="pre">Curve</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Curve.Path"><code class="docutils literal notranslate"><span class="pre">Curve.Path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Curve.SVG"><code class="docutils literal notranslate"><span class="pre">Curve.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Curve.Sample"><code class="docutils literal notranslate"><span class="pre">Curve.Sample</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Curve.Samples"><code class="docutils literal notranslate"><span class="pre">Curve.Samples</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Curve.defaults"><code class="docutils literal notranslate"><span class="pre">Curve.defaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Curve.discontinuity_limit"><code class="docutils literal notranslate"><span class="pre">Curve.discontinuity_limit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Curve.linearity_limit"><code class="docutils literal notranslate"><span class="pre">Curve.linearity_limit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Curve.random_sampling"><code class="docutils literal notranslate"><span class="pre">Curve.random_sampling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Curve.recursion_limit"><code class="docutils literal notranslate"><span class="pre">Curve.recursion_limit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Curve.sample"><code class="docutils literal notranslate"><span class="pre">Curve.sample()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Curve.subsample"><code class="docutils literal notranslate"><span class="pre">Curve.subsample()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.CurveAxis"><code class="docutils literal notranslate"><span class="pre">CurveAxis</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.CurveAxis.SVG"><code class="docutils literal notranslate"><span class="pre">CurveAxis.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.CurveAxis.defaults"><code class="docutils literal notranslate"><span class="pre">CurveAxis.defaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.CurveAxis.text_defaults"><code class="docutils literal notranslate"><span class="pre">CurveAxis.text_defaults</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Dots"><code class="docutils literal notranslate"><span class="pre">Dots</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Dots.SVG"><code class="docutils literal notranslate"><span class="pre">Dots.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Dots.defaults"><code class="docutils literal notranslate"><span class="pre">Dots.defaults</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ellipse"><code class="docutils literal notranslate"><span class="pre">Ellipse</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ellipse.Path"><code class="docutils literal notranslate"><span class="pre">Ellipse.Path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ellipse.SVG"><code class="docutils literal notranslate"><span class="pre">Ellipse.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ellipse.defaults"><code class="docutils literal notranslate"><span class="pre">Ellipse.defaults</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Fig"><code class="docutils literal notranslate"><span class="pre">Fig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Fig.SVG"><code class="docutils literal notranslate"><span class="pre">Fig.SVG()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Frame"><code class="docutils literal notranslate"><span class="pre">Frame</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Frame.SVG"><code class="docutils literal notranslate"><span class="pre">Frame.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Frame.axis_defaults"><code class="docutils literal notranslate"><span class="pre">Frame.axis_defaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Frame.minitick_length"><code class="docutils literal notranslate"><span class="pre">Frame.minitick_length</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Frame.text_defaults"><code class="docutils literal notranslate"><span class="pre">Frame.text_defaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Frame.text_xaxis_offset"><code class="docutils literal notranslate"><span class="pre">Frame.text_xaxis_offset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Frame.text_xtitle_offset"><code class="docutils literal notranslate"><span class="pre">Frame.text_xtitle_offset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Frame.text_yaxis_offset"><code class="docutils literal notranslate"><span class="pre">Frame.text_yaxis_offset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Frame.text_ytitle_offset"><code class="docutils literal notranslate"><span class="pre">Frame.text_ytitle_offset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Frame.tick_length"><code class="docutils literal notranslate"><span class="pre">Frame.tick_length</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Grid"><code class="docutils literal notranslate"><span class="pre">Grid</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Grid.SVG"><code class="docutils literal notranslate"><span class="pre">Grid.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Grid.defaults"><code class="docutils literal notranslate"><span class="pre">Grid.defaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Grid.mini_defaults"><code class="docutils literal notranslate"><span class="pre">Grid.mini_defaults</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.HGrid"><code class="docutils literal notranslate"><span class="pre">HGrid</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.HGrid.SVG"><code class="docutils literal notranslate"><span class="pre">HGrid.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.HGrid.defaults"><code class="docutils literal notranslate"><span class="pre">HGrid.defaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.HGrid.mini_defaults"><code class="docutils literal notranslate"><span class="pre">HGrid.mini_defaults</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.HLine"><code class="docutils literal notranslate"><span class="pre">HLine</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.HLine.Path"><code class="docutils literal notranslate"><span class="pre">HLine.Path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.HLine.defaults"><code class="docutils literal notranslate"><span class="pre">HLine.defaults</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Line"><code class="docutils literal notranslate"><span class="pre">Line</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Line.Path"><code class="docutils literal notranslate"><span class="pre">Line.Path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Line.SVG"><code class="docutils literal notranslate"><span class="pre">Line.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Line.defaults"><code class="docutils literal notranslate"><span class="pre">Line.defaults</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.LineAxis"><code class="docutils literal notranslate"><span class="pre">LineAxis</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.LineAxis.SVG"><code class="docutils literal notranslate"><span class="pre">LineAxis.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.LineAxis.defaults"><code class="docutils literal notranslate"><span class="pre">LineAxis.defaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.LineAxis.interpret"><code class="docutils literal notranslate"><span class="pre">LineAxis.interpret()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.LineAxis.text_defaults"><code class="docutils literal notranslate"><span class="pre">LineAxis.text_defaults</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.LineGlobal"><code class="docutils literal notranslate"><span class="pre">LineGlobal</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.LineGlobal.SVG"><code class="docutils literal notranslate"><span class="pre">LineGlobal.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.LineGlobal.defaults"><code class="docutils literal notranslate"><span class="pre">LineGlobal.defaults</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Path"><code class="docutils literal notranslate"><span class="pre">Path</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Path.SVG"><code class="docutils literal notranslate"><span class="pre">Path.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Path.defaults"><code class="docutils literal notranslate"><span class="pre">Path.defaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Path.parse"><code class="docutils literal notranslate"><span class="pre">Path.parse()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Path.parse_boolean"><code class="docutils literal notranslate"><span class="pre">Path.parse_boolean()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Path.parse_command"><code class="docutils literal notranslate"><span class="pre">Path.parse_command()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Path.parse_number"><code class="docutils literal notranslate"><span class="pre">Path.parse_number()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Path.parse_whitespace"><code class="docutils literal notranslate"><span class="pre">Path.parse_whitespace()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Plot"><code class="docutils literal notranslate"><span class="pre">Plot</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Plot.SVG"><code class="docutils literal notranslate"><span class="pre">Plot.SVG()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Poly"><code class="docutils literal notranslate"><span class="pre">Poly</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Poly.Path"><code class="docutils literal notranslate"><span class="pre">Poly.Path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Poly.SVG"><code class="docutils literal notranslate"><span class="pre">Poly.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Poly.defaults"><code class="docutils literal notranslate"><span class="pre">Poly.defaults</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Rect"><code class="docutils literal notranslate"><span class="pre">Rect</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Rect.Path"><code class="docutils literal notranslate"><span class="pre">Rect.Path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Rect.SVG"><code class="docutils literal notranslate"><span class="pre">Rect.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Rect.defaults"><code class="docutils literal notranslate"><span class="pre">Rect.defaults</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.SVG"><code class="docutils literal notranslate"><span class="pre">SVG</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.SVG.SVGDepthIterator"><code class="docutils literal notranslate"><span class="pre">SVG.SVGDepthIterator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.SVG.append"><code class="docutils literal notranslate"><span class="pre">SVG.append()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.SVG.breadth_first"><code class="docutils literal notranslate"><span class="pre">SVG.breadth_first()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.SVG.clone"><code class="docutils literal notranslate"><span class="pre">SVG.clone()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.SVG.depth_first"><code class="docutils literal notranslate"><span class="pre">SVG.depth_first()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.SVG.extend"><code class="docutils literal notranslate"><span class="pre">SVG.extend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.SVG.firefox"><code class="docutils literal notranslate"><span class="pre">SVG.firefox()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.SVG.inkscape"><code class="docutils literal notranslate"><span class="pre">SVG.inkscape()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.SVG.inkview"><code class="docutils literal notranslate"><span class="pre">SVG.inkview()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.SVG.interpret_fileName"><code class="docutils literal notranslate"><span class="pre">SVG.interpret_fileName()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.SVG.items"><code class="docutils literal notranslate"><span class="pre">SVG.items()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.SVG.keys"><code class="docutils literal notranslate"><span class="pre">SVG.keys()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.SVG.prepend"><code class="docutils literal notranslate"><span class="pre">SVG.prepend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.SVG.save"><code class="docutils literal notranslate"><span class="pre">SVG.save()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.SVG.standalone_xml"><code class="docutils literal notranslate"><span class="pre">SVG.standalone_xml()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.SVG.tree"><code class="docutils literal notranslate"><span class="pre">SVG.tree()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.SVG.values"><code class="docutils literal notranslate"><span class="pre">SVG.values()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.SVG.xml"><code class="docutils literal notranslate"><span class="pre">SVG.xml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Text"><code class="docutils literal notranslate"><span class="pre">Text</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Text.SVG"><code class="docutils literal notranslate"><span class="pre">Text.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Text.defaults"><code class="docutils literal notranslate"><span class="pre">Text.defaults</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.TextGlobal"><code class="docutils literal notranslate"><span class="pre">TextGlobal</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.TextGlobal.SVG"><code class="docutils literal notranslate"><span class="pre">TextGlobal.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.TextGlobal.defaults"><code class="docutils literal notranslate"><span class="pre">TextGlobal.defaults</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ticks"><code class="docutils literal notranslate"><span class="pre">Ticks</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ticks.SVG"><code class="docutils literal notranslate"><span class="pre">Ticks.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ticks.compute_logminiticks"><code class="docutils literal notranslate"><span class="pre">Ticks.compute_logminiticks()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ticks.compute_logticks"><code class="docutils literal notranslate"><span class="pre">Ticks.compute_logticks()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ticks.compute_miniticks"><code class="docutils literal notranslate"><span class="pre">Ticks.compute_miniticks()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ticks.compute_ticks"><code class="docutils literal notranslate"><span class="pre">Ticks.compute_ticks()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ticks.defaults"><code class="docutils literal notranslate"><span class="pre">Ticks.defaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ticks.interpret"><code class="docutils literal notranslate"><span class="pre">Ticks.interpret()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ticks.minitick_end"><code class="docutils literal notranslate"><span class="pre">Ticks.minitick_end</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ticks.minitick_start"><code class="docutils literal notranslate"><span class="pre">Ticks.minitick_start</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ticks.orient_tickmark"><code class="docutils literal notranslate"><span class="pre">Ticks.orient_tickmark()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ticks.regular_miniticks"><code class="docutils literal notranslate"><span class="pre">Ticks.regular_miniticks()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ticks.text_angle"><code class="docutils literal notranslate"><span class="pre">Ticks.text_angle</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ticks.text_defaults"><code class="docutils literal notranslate"><span class="pre">Ticks.text_defaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ticks.text_start"><code class="docutils literal notranslate"><span class="pre">Ticks.text_start</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ticks.tick_end"><code class="docutils literal notranslate"><span class="pre">Ticks.tick_end</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.Ticks.tick_start"><code class="docutils literal notranslate"><span class="pre">Ticks.tick_start</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.VGrid"><code class="docutils literal notranslate"><span class="pre">VGrid</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.VGrid.SVG"><code class="docutils literal notranslate"><span class="pre">VGrid.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.VGrid.defaults"><code class="docutils literal notranslate"><span class="pre">VGrid.defaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.VGrid.mini_defaults"><code class="docutils literal notranslate"><span class="pre">VGrid.mini_defaults</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.VLine"><code class="docutils literal notranslate"><span class="pre">VLine</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.VLine.Path"><code class="docutils literal notranslate"><span class="pre">VLine.Path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.VLine.defaults"><code class="docutils literal notranslate"><span class="pre">VLine.defaults</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.XAxis"><code class="docutils literal notranslate"><span class="pre">XAxis</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.XAxis.SVG"><code class="docutils literal notranslate"><span class="pre">XAxis.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.XAxis.defaults"><code class="docutils literal notranslate"><span class="pre">XAxis.defaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.XAxis.text_angle"><code class="docutils literal notranslate"><span class="pre">XAxis.text_angle</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.XAxis.text_defaults"><code class="docutils literal notranslate"><span class="pre">XAxis.text_defaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.XAxis.text_start"><code class="docutils literal notranslate"><span class="pre">XAxis.text_start</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.XErrorBars"><code class="docutils literal notranslate"><span class="pre">XErrorBars</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.XErrorBars.SVG"><code class="docutils literal notranslate"><span class="pre">XErrorBars.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.XErrorBars.defaults"><code class="docutils literal notranslate"><span class="pre">XErrorBars.defaults</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.YAxis"><code class="docutils literal notranslate"><span class="pre">YAxis</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.YAxis.SVG"><code class="docutils literal notranslate"><span class="pre">YAxis.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.YAxis.defaults"><code class="docutils literal notranslate"><span class="pre">YAxis.defaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.YAxis.text_angle"><code class="docutils literal notranslate"><span class="pre">YAxis.text_angle</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.YAxis.text_defaults"><code class="docutils literal notranslate"><span class="pre">YAxis.text_defaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.YAxis.text_start"><code class="docutils literal notranslate"><span class="pre">YAxis.text_start</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.YErrorBars"><code class="docutils literal notranslate"><span class="pre">YErrorBars</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.YErrorBars.SVG"><code class="docutils literal notranslate"><span class="pre">YErrorBars.SVG()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.YErrorBars.defaults"><code class="docutils literal notranslate"><span class="pre">YErrorBars.defaults</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.attr_preprocess"><code class="docutils literal notranslate"><span class="pre">attr_preprocess()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.canvas"><code class="docutils literal notranslate"><span class="pre">canvas()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.canvas_outline"><code class="docutils literal notranslate"><span class="pre">canvas_outline()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.funcRtoC"><code class="docutils literal notranslate"><span class="pre">funcRtoC()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.funcRtoR"><code class="docutils literal notranslate"><span class="pre">funcRtoR()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.funcRtoR2"><code class="docutils literal notranslate"><span class="pre">funcRtoR2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.load"><code class="docutils literal notranslate"><span class="pre">load()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.load_stream"><code class="docutils literal notranslate"><span class="pre">load_stream()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.make_marker"><code class="docutils literal notranslate"><span class="pre">make_marker()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.make_symbol"><code class="docutils literal notranslate"><span class="pre">make_symbol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.pathtoPath"><code class="docutils literal notranslate"><span class="pre">pathtoPath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.rgb"><code class="docutils literal notranslate"><span class="pre">rgb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.rotate"><code class="docutils literal notranslate"><span class="pre">rotate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.set_func_name"><code class="docutils literal notranslate"><span class="pre">set_func_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.template"><code class="docutils literal notranslate"><span class="pre">template()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.totrans"><code class="docutils literal notranslate"><span class="pre">totrans()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.unicode"><code class="docutils literal notranslate"><span class="pre">unicode()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.unumber"><code class="docutils literal notranslate"><span class="pre">unumber()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Module.calibration_grid_generation.html#Module.calibration_grid_generation.svgfig.window"><code class="docutils literal notranslate"><span class="pre">window()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Module.calibration_grid_generation.html#module-Module.calibration_grid_generation">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Module.target.html">Module.target package</a><ul>
@@ -139,7 +401,7 @@
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="index.html">Active_calibration</a></h1>
 
@@ -150,7 +412,16 @@
 
 
 
-<h3>Navigation</h3>
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Active_calibration</a><ul class="current">
@@ -171,16 +442,6 @@
   </ul></li>
 </ul>
 </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -197,8 +458,8 @@
       &#169;2024, Stephane Hu.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.3.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
       <a href="_sources/Module.rst.txt"
