@@ -1,0 +1,21 @@
+photo package
+=============
+
+Submodules
+----------
+
+photo.photo module
+------------------
+
+.. automodule:: photo.photo
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: photo
+   :members:
+   :show-inheritance:
+   :undoc-members:
