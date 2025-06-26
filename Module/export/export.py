@@ -94,8 +94,8 @@ class ExportToXML():
         tree.write("calibration_parameters.xml", encoding="ISO-8859-1", xml_declaration=True)
 
 
-    def write_XML_VIC(self, repere_general):
-        """Export the calibration data in a XML file.
+    def write_XML_VIC(self, repere_general = [[0,0,0],[0,0,0]]):
+        """Export the calibration data in a .XML file and in a .z3d file with VIC-3D compatibility.
 
         Keyword arguments:
         camera_matrix_left -- camera matrix of the left camera
@@ -105,7 +105,10 @@ class ExportToXML():
         euler_angles -- euler angles from the rotation matrix in degrees
         translation_vector -- translation vector between the cameras
 
-        Returns an XML file with the calibration data.
+        repere_general -- is a tensor where the first part is the translation vector and the second part is the rotation vector of the left camera in the global reference system. Default value for repere_general is : [[0,0,0],[0,0,0]]
+
+        Returns an XML file with the calibration data. In the same format as the calibration in VIC-3D calibration.
+        This XML file is compressed in a .z3d file witch can be oppen in VIC-3D. In VIC software, you can simply import calibration data from the .z3d file generated.
         """
         # Extract data
         center_x_left = self.camera_matrix_left[0][2]
@@ -147,9 +150,9 @@ class ExportToXML():
         beta_left = beta0
         gamma_left = gamma0
 
-        alpha_right = alpha0 - alpha
-        beta_right = beta0 - beta
-        gamma_right = gamma0 - gamma
+        alpha_right = alpha - alpha0
+        beta_right = beta - beta0
+        gamma_right = gamma - gamma0
 
         translation_x_left = x0
         translation_y_left = y0
@@ -206,6 +209,15 @@ class ExportToXML():
 
 
     def rotationMatrixEuler(self, alpha, beta, gamma):
+        """Calculate the rotation matrix using 3 euler angles.
+
+                Keyword arguments:
+                alpha -- alpha angle in degrees
+                beta -- beta angle in degrees
+                gamma -- gamma angle in degrees
+
+                Return the rotation matrix. It's a 3x3 matrix.
+                """
         alpha = radians(alpha)
         beta = radians(beta)
         gamma = radians(gamma)
