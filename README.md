@@ -271,5 +271,5 @@ If you would like to contribute, modify, improve the script, give feedbacks, I'l
 
 ## Note
 
--If you are working with an apple machine : faites attention à avoir folder, filename_extansion = self.list_image[0].split('/',1) à la ligne 19 de fourphase.py
--If you are working with Windows : faites attention à avoir folder, filename_extansion = self.list_image[0].split('\\',1) à la ligne 19 de fourphase.py
+* If you are working with an apple machine : faites attention à avoir folder, filename_extansion = self.list_image[0].split('/',1) à la ligne 19 de fourphase.py
+* If you are working with Windows : faites attention à avoir folder, filename_extansion = self.list_image[0].split('\\',1) à la ligne 19 de fourphase.py
