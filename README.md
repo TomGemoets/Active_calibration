@@ -268,3 +268,8 @@ This package doesn't provide a visualization tool of the 3D reconstructed scene.
 - Create a scatter plot of the 3D coordinates.
 
 If you would like to contribute, modify, improve the script, give feedbacks, I'll be happy to hearing from you. Please leave an Issue or a pull request.
+
+## Note
+
+If you are working with an apple machine : faites attention à avoir folder, filename_extansion = self.list_image[0].split('/',1) à la ligne 19 de fourphase.py
+If you are working with Windows : faites attention à avoir folder, filename_extansion = self.list_image[0].split('\\',1) à la ligne 19 de fourphase.py
