@@ -1,6 +1,7 @@
 import numpy as np 
 import cv2
 from ..calibration_grid_generation import *
+import os
 
 
 
@@ -85,6 +86,7 @@ class CameraActive(Camera):
         params.minRepeatability = 6
         params.minDistBetweenBlobs = 1
         detector = cv2.SimpleBlobDetector_create(params)
+        os.makedirs("output_detected_images",exist_ok=True)
 
         for each_image in self.list_image:
             image = cv2.imread(each_image)
@@ -106,6 +108,11 @@ class CameraActive(Camera):
                 cv2.imshow('image', image)
 
                 cv2.waitKey(500)
+
+                base_name = os.path.basename(each_image)
+                output_path = os.path.join("output_detected_images", f"detected_{base_name}")
+                cv2.imwrite(output_path, image)
+                print(f"Image sauvegardée : {output_path}")
         cv2.destroyAllWindows()
         return list_object_points, list_image_points, image_gray, stock_image
 

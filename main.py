@@ -32,7 +32,7 @@ def dimensions_chessboard():
 if __name__ == '__main__':
     #Demande à l'utilisateur s'il veut faire de la calibration Passive ou Active
     methode_de_calibration = choix_calibration()
-    #methode_de_calibration = 'p'
+    #methode_de_calibration = 'a'
 
     # -----------------Calibration active uniquement----------------------------------
     # Create circular grid target
@@ -66,6 +66,11 @@ if __name__ == '__main__':
             target_grid = TargetGrid(length_single_fringe, mean_pixel_value, amplitude, phase, grid_length, grid_width,
                                      'target').generate_grid_target()
         print('Grid targets are saved in the folder "Target_images".\n')
+
+        list_chemin = ["Pre_Phase_Mapping_images"]
+        list_ext = [".tiff"]
+        dossier_trie = DossierPhoto(list_chemin,list_ext)
+        dossier_trie.rename_images_active()
 
         # Load active target images from the camera left and right
         image_left = Read(deck.path_target_image, deck.name_image_left, deck.extension).grab_image_files()

@@ -16,7 +16,7 @@ phase_properties:
   number: 4       # four shift in total
 
 plate_properties:
-  grid_spacing: 38 #mm
+  grid_spacing: 38.5 #mm
 
 image_properties:
   name_image_left: _0 # suffix for images from the left camera
