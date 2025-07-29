@@ -31,8 +31,8 @@ def dimensions_chessboard():
 
 if __name__ == '__main__':
     #Demande à l'utilisateur s'il veut faire de la calibration Passive ou Active
-    methode_de_calibration = choix_calibration()
-    #methode_de_calibration = 'a'
+    #methode_de_calibration = choix_calibration()
+    methode_de_calibration = 'a'
 
     # -----------------Calibration active uniquement----------------------------------
     # Create circular grid target
@@ -54,33 +54,33 @@ if __name__ == '__main__':
         dot_grid_size = (deck.grid_length, deck.grid_width)
         dot_grid_spacing = deck.grid_spacing
 
-        for each_phase_number in np.arange(phase_number):
+        """for each_phase_number in np.arange(phase_number):
             phase = phase_shift * each_phase_number
             target_grid = TargetGrid(length_single_fringe, mean_pixel_value, amplitude, phase, grid_length, grid_width,
                                      'target').generate_grid_target()
-        print('Grid targets are saved in the folder "Target_images".\n')
+        print('Grid targets are saved in the folder "Target_images".\n')"""
 
         # Create circular grid target
-        for each_phase_number in np.arange(phase_number):
+        """for each_phase_number in np.arange(phase_number):
             phase = phase_shift * each_phase_number
             target_grid = TargetGrid(length_single_fringe, mean_pixel_value, amplitude, phase, grid_length, grid_width,
                                      'target').generate_grid_target()
-        print('Grid targets are saved in the folder "Target_images".\n')
+        print('Grid targets are saved in the folder "Target_images".\n')"""
 
         list_chemin = ["Pre_Phase_Mapping_images"]
         list_ext = [".tiff"]
-        dossier_trie = DossierPhoto(list_chemin,list_ext)
-        dossier_trie.rename_images_active()
+        #dossier_trie = DossierPhoto(list_chemin,list_ext)
+        #dossier_trie.rename_images_active()
 
         # Load active target images from the camera left and right
-        image_left = Read(deck.path_target_image, deck.name_image_left, deck.extension).grab_image_files()
-        image_right = Read(deck.path_target_image, deck.name_image_right, deck.extension).grab_image_files()
+        """image_left = Read(deck.path_target_image, deck.name_image_left, deck.extension).grab_image_files()
+        image_right = Read(deck.path_target_image, deck.name_image_right, deck.extension).grab_image_files()"""
 
         # Perform the four phase shift for all images
-        calculate_four_phase_camera(image_left, phase_number)
+        """calculate_four_phase_camera(image_left, phase_number)
         print('Four-phase shifting for the images from the left camera: done!')
         calculate_four_phase_camera(image_right, phase_number)
-        print('Four-phase shifting for the images from the right camera: done!\n')
+        print('Four-phase shifting for the images from the right camera: done!\n')"""
 
         # Load calibration image
         calibration_image_left = Read(deck.path_active_calibration_image, deck.name_image_left,
@@ -91,13 +91,13 @@ if __name__ == '__main__':
         # Calibrate camera left
         print("Nombre d'images left:", len(calibration_image_left))
         camera_left = CameraActive(calibration_image_left,dot_grid_size, dot_grid_spacing)
-        list_object_points_left, list_image_points_left, image_gray_left, stock_image_left = camera_left.detect_centers()
+        list_object_points_left, list_image_points_left, image_gray_left, stock_image_left = camera_left.detect_centers(0)
         #calibration_left = camera_left.calibrate(list_object_points, list_image_points, image_gray, stock_image)
 
         # Calibrate camera right
         print("Nombre d'images right:", len(calibration_image_right))
         camera_right = CameraActive(calibration_image_right, dot_grid_size, dot_grid_spacing) #problème ici
-        list_object_points_right, list_image_points_right, image_gray_right, stock_image_right = camera_right.detect_centers()
+        list_object_points_right, list_image_points_right, image_gray_right, stock_image_right = camera_right.detect_centers(1)
         #calibration_right = camera_right.calibrate(list_object_points, list_image_points, image_gray, stock_image)
     # -----------------Calibration active uniquement----------------------------------
 
@@ -139,13 +139,13 @@ if __name__ == '__main__':
 
 
         camera_left = CameraPassive(image_p_left)
-        #camera_left = CameraActive(image_p_left, dot_grid_size, dot_grid_spacing)
+        #camera_left = CameraActive(image_p_left, dot_grid_size, dot_grid_spacing
         list_object_points_left, list_image_points_left, image_gray_left, stock_image_left = camera_left.find_corners(chess_columns, chess_lines)
         #list_object_points_left, list_image_points_left, image_gray_left, stock_image_left = camera_left.detect_centers()
 
         camera_right = CameraPassive(image_p_right)
-        list_object_points_right, list_image_points_right, image_gray_right, stock_image_right = camera_right.find_corners(chess_columns, chess_lines)
         #camera_right = CameraActive(image_p_right, dot_grid_size, dot_grid_spacing)
+        list_object_points_right, list_image_points_right, image_gray_right, stock_image_right = camera_right.find_corners(chess_columns, chess_lines)
         #list_object_points_right, list_image_points_right, image_gray_right, stock_image_right = camera_right.detect_centers()
 
     #-------------------Calibration passive uniquement----------------------------------

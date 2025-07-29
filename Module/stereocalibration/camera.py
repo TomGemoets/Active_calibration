@@ -2,6 +2,8 @@ import numpy as np
 import cv2
 from ..calibration_grid_generation import *
 import os
+import pandas as pd
+
 
 
 
@@ -54,7 +56,7 @@ class CameraActive(Camera):
         self.dot_grid_size = dot_grid_size
         self.list_image = list_image
     
-    def detect_centers(self):
+    def detect_centers(self, numCam):
         """Detect the grids on a calibration plate on several images.
 
         Keyword arguments:
@@ -71,6 +73,7 @@ class CameraActive(Camera):
         list_image_points = []
 
         stock_image = []
+        all_centers = []
 
         # Blob detector properties
         params = cv2.SimpleBlobDetector_Params()
@@ -79,9 +82,9 @@ class CameraActive(Camera):
         params.filterByConvexity = False
         params.filterByInertia = True
         params.filterByColor = False
-        params.minArea = 200
+        params.minArea = 50
         params.maxArea = 10e4
-        params.minCircularity = 0.3
+        params.minCircularity = 0.5
         params.minInertiaRatio = 0.01
         params.minRepeatability = 6
         params.minDistBetweenBlobs = 1
@@ -113,7 +116,19 @@ class CameraActive(Camera):
                 output_path = os.path.join("output_detected_images", f"detected_{base_name}")
                 cv2.imwrite(output_path, image)
                 print(f"Image sauvegardée : {output_path}")
+
+
+                for point in circle_center:
+                    x, y = point[0]
+                    all_centers.append({"image": base_name, "x": x, "y": y})
+
         cv2.destroyAllWindows()
+
+        #ecris ds fichier .csv
+        if all_centers:
+            df = pd.DataFrame(all_centers)
+            df.to_csv(f"centres_detectes_{numCam}.csv", index=False)
+            print(f"Coordonnées des centres sauvegardées dans f'centres_detectes_{numCam}.csv'.")
         return list_object_points, list_image_points, image_gray, stock_image
 
 class CameraPassive(Camera):
@@ -156,4 +171,5 @@ class CameraPassive(Camera):
         cv2.waitKey(500)
         #cv2.destroyAllWindows()
         return objpoints, imgpoints, gray, stock_img
+
 
