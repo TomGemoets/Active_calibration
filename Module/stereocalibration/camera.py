@@ -1,14 +1,8 @@
-import numpy as np 
 import cv2
 from ..calibration_grid_generation import *
 import os
 import pandas as pd
 
-
-
-
-import glob
-from scipy.spatial.transform import Rotation
 
 
 class Camera():
@@ -35,7 +29,7 @@ class Camera():
         # Detection of the features on each image
         #list_object_points, list_image_points, image_gray, stock_image = self.detect_centers()
         # Calibration
-        boolean_calibration, camera_matrix, distortion_coefficient, rotation_camera, translation_camera = cv2.calibrateCamera(list_object_points, list_image_points, image_gray.shape[::-1], None, None)
+        boolean_calibration, camera_matrix, distortion_coefficient, rotation_camera, translation_camera = cv2.calibrateCamera(list_object_points, list_image_points, image_gray.shape[::-1], None, None, flags=0)
 
         #reprojection error
         mean_error_reprojection = 0
@@ -142,6 +136,7 @@ class CameraActive(Camera):
 
         return list_object_points, list_image_points, image_gray, stock_image
 
+
 class CameraPassive(Camera):
     def __init__(self, list_image ):
         self.list_images = list_image
@@ -181,6 +176,6 @@ class CameraPassive(Camera):
         cv2.imshow('img', img)
         cv2.waitKey(500)
         #cv2.destroyAllWindows()
-        return objpoints, imgpoints, gray, stock_img
 
+        return objpoints, imgpoints, gray, stock_img
 

@@ -22,6 +22,7 @@ def choix_calibration():
             return passive_ou_active
         else :
             print("Vous avez encoder une mauvaise valeur, veuillez réessayer.")
+
 def dimensions_chessboard():
     while True :
         try:
@@ -39,8 +40,10 @@ if __name__ == '__main__':
     print(f"Fichier '{csv_path}' réinitialisé.")
 
     #Demande à l'utilisateur s'il veut faire de la calibration Passive ou Active
+
     #methode_de_calibration = choix_calibration()
     methode_de_calibration = 'a'
+
 
     # -----------------Calibration active uniquement----------------------------------
     # Create circular grid target
@@ -62,21 +65,24 @@ if __name__ == '__main__':
         dot_grid_size = (deck.grid_length, deck.grid_width)
         dot_grid_spacing = deck.grid_spacing
 
-        #génère les targets
-        """for each_phase_number in np.arange(phase_number):
-            phase = phase_shift * each_phase_number
-            target_grid = TargetGrid(length_single_fringe, mean_pixel_value, amplitude, phase, grid_length, grid_width,
-                                     'target').generate_grid_target()
-        print('Grid targets are saved in the folder "Target_images".\n')
+
+        #--- Generation des target de tout types ---
+        """Target = TargetGrid(length_single_fringe, grid_length, grid_width, './Target_images/')
+
 
         # Create circular grid target
         for each_phase_number in np.arange(phase_number):
             phase = phase_shift * each_phase_number
-            target_grid = TargetGrid(length_single_fringe, mean_pixel_value, amplitude, phase, grid_length, grid_width,
-                                     'target').generate_grid_target()
+            Target.generate_grid_active(mean_pixel_value, amplitude, phase, 'active')
+            Target.generate_grid_active_VIC(mean_pixel_value, amplitude, phase, 3, 3, 9, 5, 'activeVIC')
+
+        Target.generate_grid_passive('passive')
+
+        Target.generate_grid_passive_VIC(3, 3, 9, 5, 'passiveVIC')
+
         print('Grid targets are saved in the folder "Target_images".\n')"""
 
-        list_chemin = ["Pre_Phase_Mapping_images"]
+        list_chemin = ["CalibActivePiperT4"]
         list_ext = [".tiff"]
         #dossier_trie = DossierPhoto(list_chemin,list_ext)
         #dossier_trie.rename_images_active()
