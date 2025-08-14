@@ -6,6 +6,7 @@ __pycache__/
 # Results folder and files
 For_Active_Calibration_images/
 Target_images/
+Rebus/
 calibration_parameters.xml
 
 # Apple stuffs
