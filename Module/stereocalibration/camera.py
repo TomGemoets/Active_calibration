@@ -75,6 +75,8 @@ class CameraActive(Camera):
         stock_image = []
         all_centers = []
 
+        csv_path = "centres_detectes.csv"
+
         # Blob detector properties
         params = cv2.SimpleBlobDetector_Params()
         params.filterByArea = True
@@ -84,7 +86,7 @@ class CameraActive(Camera):
         params.filterByColor = False
         params.minArea = 50
         params.maxArea = 10e4
-        params.minCircularity = 0.5
+        params.minCircularity = 0.6
         params.minInertiaRatio = 0.01
         params.minRepeatability = 6
         params.minDistBetweenBlobs = 1
@@ -124,11 +126,20 @@ class CameraActive(Camera):
 
         cv2.destroyAllWindows()
 
-        #ecris ds fichier .csv
-        if all_centers:
-            df = pd.DataFrame(all_centers)
-            df.to_csv(f"centres_detectes_{numCam}.csv", index=False)
-            print(f"Coordonnées des centres sauvegardées dans f'centres_detectes_{numCam}.csv'.")
+        # Convertir les nouveaux centres en DataFrame
+        df_new = pd.DataFrame(all_centers)
+
+        # Si le fichier existe déjà, le charger et concaténer
+        if os.path.isfile(csv_path):
+            df_existing = pd.read_csv(csv_path)
+            df_combined = pd.concat([df_existing, df_new], ignore_index=True)
+        else:
+            df_combined = df_new
+
+        # Réécriture du fichier avec toutes les données
+        df_combined.to_csv(csv_path, index=False)
+        print(f"{len(df_new)} nouveaux centres ajoutés à '{csv_path}' (total : {len(df_combined)}).")
+
         return list_object_points, list_image_points, image_gray, stock_image
 
 class CameraPassive(Camera):

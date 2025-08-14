@@ -3,6 +3,8 @@ import subprocess
 from PIL import Image
 import pillow_heif
 import cv2 as cv
+import pandas as pd
+import os
 
 
 def calculate_four_phase_camera(list_image, phase_number):
@@ -30,6 +32,12 @@ def dimensions_chessboard():
             print("Erreur : valeur non valide. Veuillez réessayer.")
 
 if __name__ == '__main__':
+    # Réinitialiser le fichier CSV à chaque lancement
+    csv_path = "centres_detectes.csv"
+    empty_df = pd.DataFrame(columns=["image", "x", "y"])
+    empty_df.to_csv(csv_path, index=False)
+    print(f"Fichier '{csv_path}' réinitialisé.")
+
     #Demande à l'utilisateur s'il veut faire de la calibration Passive ou Active
     #methode_de_calibration = choix_calibration()
     methode_de_calibration = 'a'
@@ -54,14 +62,15 @@ if __name__ == '__main__':
         dot_grid_size = (deck.grid_length, deck.grid_width)
         dot_grid_spacing = deck.grid_spacing
 
+        #génère les targets
         """for each_phase_number in np.arange(phase_number):
             phase = phase_shift * each_phase_number
             target_grid = TargetGrid(length_single_fringe, mean_pixel_value, amplitude, phase, grid_length, grid_width,
                                      'target').generate_grid_target()
-        print('Grid targets are saved in the folder "Target_images".\n')"""
+        print('Grid targets are saved in the folder "Target_images".\n')
 
         # Create circular grid target
-        """for each_phase_number in np.arange(phase_number):
+        for each_phase_number in np.arange(phase_number):
             phase = phase_shift * each_phase_number
             target_grid = TargetGrid(length_single_fringe, mean_pixel_value, amplitude, phase, grid_length, grid_width,
                                      'target').generate_grid_target()
@@ -73,20 +82,20 @@ if __name__ == '__main__':
         #dossier_trie.rename_images_active()
 
         # Load active target images from the camera left and right
-        """image_left = Read(deck.path_target_image, deck.name_image_left, deck.extension).grab_image_files()
-        image_right = Read(deck.path_target_image, deck.name_image_right, deck.extension).grab_image_files()"""
+        image_left = Read(deck.path_target_image, deck.name_image_left, deck.extension).grab_image_files()
+        #image_right = Read(deck.path_target_image, deck.name_image_right, deck.extension).grab_image_files()
 
         # Perform the four phase shift for all images
-        """calculate_four_phase_camera(image_left, phase_number)
+        calculate_four_phase_camera(image_left, phase_number)
         print('Four-phase shifting for the images from the left camera: done!')
-        calculate_four_phase_camera(image_right, phase_number)
-        print('Four-phase shifting for the images from the right camera: done!\n')"""
+        #calculate_four_phase_camera(image_right, phase_number)
+        #print('Four-phase shifting for the images from the right camera:sco done!\n')
 
         # Load calibration image
         calibration_image_left = Read(deck.path_active_calibration_image, deck.name_image_left,
                                       deck.extension).grab_image_files()
-        calibration_image_right = Read(deck.path_active_calibration_image, deck.name_image_right,
-                                       deck.extension).grab_image_files()
+        #calibration_image_right = Read(deck.path_active_calibration_image, deck.name_image_right,
+        #                              deck.extension).grab_image_files()
         print('Performing the stereo-calibration...\n')
         # Calibrate camera left
         print("Nombre d'images left:", len(calibration_image_left))

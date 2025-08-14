@@ -24,7 +24,7 @@ class DossierPhoto:
                 if os.path.isfile(nom_chemin_complet):
                     _, ext = os.path.splitext(nom_fichier)
                     if ext.lower() in self.list_extension:
-                        ext = '.jpg'
+                        ext = '.tiff'
                         nouveau_nom_fichier = f"{position:03d}_{camera}{ext}"
                         nouveau_chemin_complet = os.path.join(chemin, nouveau_nom_fichier)
                         os.rename(nom_chemin_complet, nouveau_chemin_complet)
@@ -33,7 +33,7 @@ class DossierPhoto:
 
     def rename_images_active(self):
         # Paramètres
-        positions = [f"{i:02}" for i in range(13)]  # max 100 positions (00, 01, ..., 99)
+        positions = [f"{i:02}" for i in range(11)]  # max 100 positions (00, 01, ..., 99)
         phases = ['000', '090', '180', '270']
         cameras = ['0', '1']
 

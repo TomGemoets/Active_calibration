@@ -1,22 +1,22 @@
 #contient toutes les infos conernant le support du pattern (ordi)
 grid_parameters:
-  grid_length: 14 # number of fringes
-  grid_width: 10 # number of fringes
+  grid_length: 7 # number of fringes
+  grid_width: 5 # number of fringes
 
 screen_resolution:
   resolution_length: 2388 # number of pixels
   resolution_width: 1592  # number of pixels
 
 fringe_intensities: # pixels intensities set by default
-  mean_pixel_value: 160 # mean intensity of a circular fringe
-  sinusoidal_amplitude: 80 # amplitude of the sinusoidal pattern
+  mean_pixel_value: 128 # mean intensity of a circular fringe
+  sinusoidal_amplitude: 100 # amplitude of the sinusoidal pattern
 
 phase_properties:
   phase_shift: 90 #deg
   number: 4       # four shift in total
 
 plate_properties:
-  grid_spacing: 41 #mm
+  grid_spacing: 30.596 #mm
 
 image_properties:
   name_image_left: _0 # suffix for images from the left camera
