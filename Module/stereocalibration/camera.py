@@ -1,5 +1,8 @@
 import cv2
 from ..calibration_grid_generation import *
+import os
+import pandas as pd
+
 
 
 class Camera():
@@ -47,7 +50,7 @@ class CameraActive(Camera):
         self.dot_grid_size = dot_grid_size
         self.list_image = list_image
     
-    def detect_centers(self):
+    def detect_centers(self, numCam):
         """Detect the grids on a calibration plate on several images.
 
         Keyword arguments:
@@ -64,6 +67,9 @@ class CameraActive(Camera):
         list_image_points = []
 
         stock_image = []
+        all_centers = []
+
+        csv_path = "centres_detectes.csv"
 
         # Blob detector properties
         params = cv2.SimpleBlobDetector_Params()
@@ -72,13 +78,14 @@ class CameraActive(Camera):
         params.filterByConvexity = False
         params.filterByInertia = True
         params.filterByColor = False
-        params.minArea = 200
+        params.minArea = 50
         params.maxArea = 10e4
-        params.minCircularity = 0.3
+        params.minCircularity = 0.6
         params.minInertiaRatio = 0.01
         params.minRepeatability = 6
         params.minDistBetweenBlobs = 1
         detector = cv2.SimpleBlobDetector_create(params)
+        os.makedirs("output_detected_images",exist_ok=True)
 
         for each_image in self.list_image:
             image = cv2.imread(each_image)
@@ -100,7 +107,33 @@ class CameraActive(Camera):
                 cv2.imshow('image', image)
 
                 cv2.waitKey(500)
+
+                base_name = os.path.basename(each_image)
+                output_path = os.path.join("output_detected_images", f"detected_{base_name}")
+                cv2.imwrite(output_path, image)
+                print(f"Image sauvegardée : {output_path}")
+
+
+                for point in circle_center:
+                    x, y = point[0]
+                    all_centers.append({"image": base_name, "x": x, "y": y})
+
         cv2.destroyAllWindows()
+
+        # Convertir les nouveaux centres en DataFrame
+        df_new = pd.DataFrame(all_centers)
+
+        # Si le fichier existe déjà, le charger et concaténer
+        if os.path.isfile(csv_path):
+            df_existing = pd.read_csv(csv_path)
+            df_combined = pd.concat([df_existing, df_new], ignore_index=True)
+        else:
+            df_combined = df_new
+
+        # Réécriture du fichier avec toutes les données
+        df_combined.to_csv(csv_path, index=False)
+        print(f"{len(df_new)} nouveaux centres ajoutés à '{csv_path}' (total : {len(df_combined)}).")
+
         return list_object_points, list_image_points, image_gray, stock_image
 
 
@@ -143,4 +176,6 @@ class CameraPassive(Camera):
         cv2.imshow('img', img)
         cv2.waitKey(500)
         #cv2.destroyAllWindows()
+
         return objpoints, imgpoints, gray, stock_img
+
