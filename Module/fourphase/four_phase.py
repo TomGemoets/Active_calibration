@@ -3,6 +3,7 @@ import cv2
 import os
 
 class FourPhase():
+
     def __init__(self, list_image):
         self.list_image = list_image
         self.position_number = self.get_position_and_camera_number()[0]
@@ -16,7 +17,7 @@ class FourPhase():
 
         Returns the position number and the camera number.
         """
-        folder, filename_extansion = self.list_image[0].split('\\',1)
+        folder, filename_extansion = self.list_image[0].split('/',1)
         filename, extansion = filename_extansion.split('.',1)
         position_number , phase_value, camera_number = filename.split('_',3)
         return position_number, camera_number
@@ -33,7 +34,7 @@ class FourPhase():
         image_read = cv2.imread(image, cv2.IMREAD_GRAYSCALE)
         image_array = image_read.astype(float)
         return image_array
-    
+
     # Calculate four-phase shift
     def calculate_four_phase_shifting(self):
         """Calculate the phase map from a list of four-phase shifted images
@@ -53,7 +54,15 @@ class FourPhase():
         # Calculate arctan value
         numerator = self.get_image_array(self.list_image[3]) - self.get_image_array(self.list_image[1])
         denominator = self.get_image_array(self.list_image[0]) - self.get_image_array(self.list_image[2])
+        """
+        numerator_image = numerator.astype(np.uint8)
+        cv2.imwrite('./For_Active_Calibration_images/' + self.position_number + '_' + self.camera_number + 'numerator.tif', numerator_image)
 
+        denominator_image = denominator.astype(np.uint8)
+        cv2.imwrite(
+            './For_Active_Calibration_images/' + self.position_number + '_' + self.camera_number + 'denominator.tif',
+            denominator_image)
+        """
         fraction = np.divide(numerator, denominator, out=np.zeros_like(numerator), where=denominator != 0)
         arctan_value = np.abs(np.arctan(fraction))
 
@@ -96,4 +105,4 @@ class FourPhase():
         else:
             os.mkdir('./For_Active_Calibration_images')
             cv2.imwrite('./For_Active_Calibration_images/' + self.position_number + '_' + self.camera_number + '.tiff', four_phase_image)
-        #cv2.destroyAllWindows()
+        cv2.destroyAllWindows()

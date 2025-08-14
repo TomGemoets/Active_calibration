@@ -93,7 +93,6 @@ class ExportToXML():
         # Write the XML tree to a file
         tree.write("calibration_parameters.xml", encoding="ISO-8859-1", xml_declaration=True)
 
-
     def write_XML_VIC(self, repere_general = [[0,0,0],[0,0,0]]):
         """Export the calibration data in a .XML file and in a .z3d file with VIC-3D compatibility.
 
@@ -207,7 +206,6 @@ class ExportToXML():
             archive.write("project.xml")  # Important : nom dans l'archive
             print("done")
 
-
     def rotationMatrixEuler(self, alpha, beta, gamma):
         """Calculate the rotation matrix using 3 euler angles.
 
@@ -227,6 +225,7 @@ class ExportToXML():
                        cos(alpha) * sin(beta) * sin(gamma) - sin(alpha) * cos(gamma)],
                       [-sin(beta), sin(alpha) * cos(beta), cos(alpha) * cos(beta)]])
         return R
+
 
 if __name__ == '__main__':
     test = [[[4.69177326e+03, 0.00000000e+00, 1.14997865e+03], [0.00000000e+00, 4.69195035e+03, 1.08197998e+03], [0.00000000e+00, 0.00000000e+00, 1.00000000e+00]], [[-6.87284926e-02, -1.53296516e+00,  1.01792327e-03, -3.56298259e-03,  -5.93088358e+01]], [[4.68490841e+03, 0.00000000e+00, 1.13693331e+03], [0.00000000e+00, 4.68644278e+03, 1.05681962e+03], [0.00000000e+00, 0.00000000e+00, 1.00000000e+00]], [[-7.92820681e-02, -5.63249090e+00, -1.31658829e-04, -4.42416335e-03,   2.05720954e+02]], [[ 0.99542649, -0.05189491,  0.08020617], [ 0.05134249,  0.99864113,  0.00893598], [-0.08056091, -0.00477713,  0.99673824]], [[-208.44747426], [   3.10579127], [ -15.67951203]], [ 2.98431905,  4.60041637, -0.5136559 ]]
